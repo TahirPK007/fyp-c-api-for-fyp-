@@ -50,4 +50,3 @@ namespace fyp.Controllers
         }
     }
 }
-//this is my patient controller
