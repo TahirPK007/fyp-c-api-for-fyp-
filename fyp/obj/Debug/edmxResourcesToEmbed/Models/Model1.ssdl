@@ -5,8 +5,8 @@
       <PropertyRef Name="acceptCaseID" />
     </Key>
     <Property Name="acceptCaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="pid" Type="int" />
-    <Property Name="did" Type="int" />
+    <Property Name="patient_id" Type="int" />
+    <Property Name="jrdoc_id" Type="int" />
     <Property Name="time" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="examine">
@@ -14,7 +14,7 @@
       <PropertyRef Name="examineID" />
     </Key>
     <Property Name="examineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="pid" Type="int" />
+    <Property Name="patient_id" Type="int" />
     <Property Name="nurseID" Type="int" />
   </EntityType>
   <EntityType Name="history">
@@ -22,17 +22,17 @@
       <PropertyRef Name="historyID" />
     </Key>
     <Property Name="historyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="pid" Type="int" />
-    <Property Name="did" Type="int" />
+    <Property Name="patient_id" Type="int" />
+    <Property Name="jrdoc_id" Type="int" />
     <Property Name="prescription" Type="varchar" MaxLength="200" />
     <Property Name="date" Type="varchar" MaxLength="50" />
     <Property Name="time" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>
-      <PropertyRef Name="did" />
+      <PropertyRef Name="jrdoc_id" />
     </Key>
-    <Property Name="did" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="jrdoc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="fullname" Type="varchar" MaxLength="50" />
     <Property Name="fathername" Type="varchar" MaxLength="50" />
     <Property Name="email" Type="varchar" MaxLength="30" />
@@ -54,9 +54,9 @@
   </EntityType>
   <EntityType Name="patient">
     <Key>
-      <PropertyRef Name="pid" />
+      <PropertyRef Name="patient_id" />
     </Key>
-    <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cnic" Type="varchar" MaxLength="40" />
     <Property Name="fullname" Type="varchar" MaxLength="30" />
     <Property Name="relation" Type="varchar" MaxLength="50" />
@@ -72,17 +72,27 @@
     </Key>
     <Property Name="ratingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="historyID" Type="int" />
-    <Property Name="sid" Type="int" />
+    <Property Name="srdoc_id" Type="int" />
     <Property Name="rating" Type="int" />
   </EntityType>
   <EntityType Name="seneriorDoctor">
     <Key>
-      <PropertyRef Name="sid" />
+      <PropertyRef Name="srdoc_id" />
     </Key>
-    <Property Name="sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="srdoc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="username" Type="varchar" MaxLength="50" />
     <Property Name="password" Type="varchar" MaxLength="50" />
     <Property Name="role" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="vitals">
     <Key>
@@ -90,22 +100,22 @@
     </Key>
     <Property Name="vitalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nurseID" Type="int" />
-    <Property Name="pid" Type="int" />
+    <Property Name="patient_id" Type="int" />
     <Property Name="bp" Type="varchar" MaxLength="40" />
     <Property Name="sugar" Type="int" />
     <Property Name="temper" Type="float" />
     <Property Name="symptoms" Type="varchar" MaxLength="100" />
-    <Property Name="image" Type="varchar(max)" />
+    <Property Name="image" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK__acceptCase__did__59FA5E80">
     <End Role="juniorDoctor" Type="Self.juniorDoctor" Multiplicity="0..1" />
     <End Role="acceptCase" Type="Self.acceptCase" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="juniorDoctor">
-        <PropertyRef Name="did" />
+        <PropertyRef Name="jrdoc_id" />
       </Principal>
       <Dependent Role="acceptCase">
-        <PropertyRef Name="did" />
+        <PropertyRef Name="jrdoc_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -114,10 +124,10 @@
     <End Role="acceptCase" Type="Self.acceptCase" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="patient">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Principal>
       <Dependent Role="acceptCase">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -138,10 +148,10 @@
     <End Role="examine" Type="Self.examine" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="patient">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Principal>
       <Dependent Role="examine">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -150,10 +160,10 @@
     <End Role="history" Type="Self.history" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="juniorDoctor">
-        <PropertyRef Name="did" />
+        <PropertyRef Name="jrdoc_id" />
       </Principal>
       <Dependent Role="history">
-        <PropertyRef Name="did" />
+        <PropertyRef Name="jrdoc_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -162,10 +172,10 @@
     <End Role="history" Type="Self.history" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="patient">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Principal>
       <Dependent Role="history">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -186,10 +196,10 @@
     <End Role="rating" Type="Self.rating" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="seneriorDoctor">
-        <PropertyRef Name="sid" />
+        <PropertyRef Name="srdoc_id" />
       </Principal>
       <Dependent Role="rating">
-        <PropertyRef Name="sid" />
+        <PropertyRef Name="srdoc_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -202,6 +212,7 @@
     <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="rating" EntityType="Self.rating" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="seneriorDoctor" EntityType="Self.seneriorDoctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vitals" EntityType="Self.vitals" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__acceptCase__did__59FA5E80" Association="Self.FK__acceptCase__did__59FA5E80">
       <End Role="juniorDoctor" EntitySet="juniorDoctor" />

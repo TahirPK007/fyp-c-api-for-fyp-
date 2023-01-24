@@ -10,7 +10,7 @@ namespace fyp.Controllers
 {
     public class PatientController : ApiController
     {
-        virtualClinicEntities db = new virtualClinicEntities();
+        virtualClinicEntities1 db = new virtualClinicEntities1();
         [HttpPost]
         public HttpResponseMessage Addpatient(patient pat,int nurseid)
         {
@@ -33,7 +33,7 @@ namespace fyp.Controllers
                     db.SaveChanges();
                     var exa = db.patients.Where(dr => dr.cnic == pat.cnic).FirstOrDefault();
                     examine e = new examine();
-                    e.pid = exa.pid;
+                    e.patient_id = exa.patient_id;
                     e.nurseID = nurseid;
                     db.examines.Add(e);
                     db.SaveChanges();

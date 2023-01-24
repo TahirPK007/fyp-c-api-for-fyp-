@@ -5,8 +5,8 @@
       <PropertyRef Name="acceptCaseID" />
     </Key>
     <Property Name="acceptCaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="pid" Type="Int32" />
-    <Property Name="did" Type="Int32" />
+    <Property Name="patient_id" Type="Int32" />
+    <Property Name="jrdoc_id" Type="Int32" />
     <Property Name="time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="juniorDoctor" Relationship="Self.FK__acceptCase__did__59FA5E80" FromRole="acceptCase" ToRole="juniorDoctor" />
     <NavigationProperty Name="patient" Relationship="Self.FK__acceptCase__pid__59063A47" FromRole="acceptCase" ToRole="patient" />
@@ -16,7 +16,7 @@
       <PropertyRef Name="examineID" />
     </Key>
     <Property Name="examineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="pid" Type="Int32" />
+    <Property Name="patient_id" Type="Int32" />
     <Property Name="nurseID" Type="Int32" />
     <NavigationProperty Name="nurse" Relationship="Self.FK__examine__nurseID__5441852A" FromRole="examine" ToRole="nurse" />
     <NavigationProperty Name="patient" Relationship="Self.FK__examine__pid__534D60F1" FromRole="examine" ToRole="patient" />
@@ -26,8 +26,8 @@
       <PropertyRef Name="historyID" />
     </Key>
     <Property Name="historyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="pid" Type="Int32" />
-    <Property Name="did" Type="Int32" />
+    <Property Name="patient_id" Type="Int32" />
+    <Property Name="jrdoc_id" Type="Int32" />
     <Property Name="prescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -37,9 +37,9 @@
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>
-      <PropertyRef Name="did" />
+      <PropertyRef Name="jrdoc_id" />
     </Key>
-    <Property Name="did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="jrdoc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fathername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -64,9 +64,9 @@
   </EntityType>
   <EntityType Name="patient">
     <Key>
-      <PropertyRef Name="pid" />
+      <PropertyRef Name="patient_id" />
     </Key>
-    <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="patient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="cnic" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
     <Property Name="fullname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="relation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -85,43 +85,53 @@
     </Key>
     <Property Name="ratingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="historyID" Type="Int32" />
-    <Property Name="sid" Type="Int32" />
+    <Property Name="srdoc_id" Type="Int32" />
     <Property Name="rating1" Type="Int32" />
     <NavigationProperty Name="history" Relationship="Self.FK__rating__historyI__628FA481" FromRole="rating" ToRole="history" />
     <NavigationProperty Name="seneriorDoctor" Relationship="Self.FK__rating__sid__6383C8BA" FromRole="rating" ToRole="seneriorDoctor" />
   </EntityType>
   <EntityType Name="seneriorDoctor">
     <Key>
-      <PropertyRef Name="sid" />
+      <PropertyRef Name="srdoc_id" />
     </Key>
-    <Property Name="sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="srdoc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ratings" Relationship="Self.FK__rating__sid__6383C8BA" FromRole="seneriorDoctor" ToRole="rating" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="vital">
     <Key>
       <PropertyRef Name="vitalID" />
     </Key>
     <Property Name="vitalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nurseID" Type="Int32" />
+    <Property Name="patient_id" Type="Int32" />
     <Property Name="bp" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
     <Property Name="sugar" Type="Int32" />
     <Property Name="temper" Type="Double" />
     <Property Name="symptoms" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="nurseID" Type="Int32" />
-    <Property Name="pid" Type="Int32" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK__acceptCase__did__59FA5E80">
     <End Role="juniorDoctor" Type="Self.juniorDoctor" Multiplicity="0..1" />
     <End Role="acceptCase" Type="Self.acceptCase" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="juniorDoctor">
-        <PropertyRef Name="did" />
+        <PropertyRef Name="jrdoc_id" />
       </Principal>
       <Dependent Role="acceptCase">
-        <PropertyRef Name="did" />
+        <PropertyRef Name="jrdoc_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -130,10 +140,10 @@
     <End Role="acceptCase" Type="Self.acceptCase" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="patient">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Principal>
       <Dependent Role="acceptCase">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -154,10 +164,10 @@
     <End Role="examine" Type="Self.examine" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="patient">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Principal>
       <Dependent Role="examine">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -166,10 +176,10 @@
     <End Role="history" Type="Self.history" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="juniorDoctor">
-        <PropertyRef Name="did" />
+        <PropertyRef Name="jrdoc_id" />
       </Principal>
       <Dependent Role="history">
-        <PropertyRef Name="did" />
+        <PropertyRef Name="jrdoc_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -178,10 +188,10 @@
     <End Role="history" Type="Self.history" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="patient">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Principal>
       <Dependent Role="history">
-        <PropertyRef Name="pid" />
+        <PropertyRef Name="patient_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -202,14 +212,14 @@
     <End Role="rating" Type="Self.rating" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="seneriorDoctor">
-        <PropertyRef Name="sid" />
+        <PropertyRef Name="srdoc_id" />
       </Principal>
       <Dependent Role="rating">
-        <PropertyRef Name="sid" />
+        <PropertyRef Name="srdoc_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="virtualClinicEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="acceptCases" EntityType="Self.acceptCase" />
     <EntitySet Name="examines" EntityType="Self.examine" />
     <EntitySet Name="histories" EntityType="Self.history" />
@@ -218,6 +228,7 @@
     <EntitySet Name="patients" EntityType="Self.patient" />
     <EntitySet Name="ratings" EntityType="Self.rating" />
     <EntitySet Name="seneriorDoctors" EntityType="Self.seneriorDoctor" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="vitals" EntityType="Self.vital" />
     <AssociationSet Name="FK__acceptCase__did__59FA5E80" Association="Self.FK__acceptCase__did__59FA5E80">
       <End Role="juniorDoctor" EntitySet="juniorDoctors" />

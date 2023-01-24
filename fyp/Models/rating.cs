@@ -16,7 +16,7 @@ namespace fyp.Models
     {
         public int ratingID { get; set; }
         public Nullable<int> historyID { get; set; }
-        public Nullable<int> sid { get; set; }
+        public Nullable<int> srdoc_id { get; set; }
         public Nullable<int> rating1 { get; set; }
     
         public virtual history history { get; set; }

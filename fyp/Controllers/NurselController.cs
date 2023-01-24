@@ -12,7 +12,7 @@ namespace fyp.Controllers
 {
     public class NurselController : ApiController
     {
-        virtualClinicEntities db = new virtualClinicEntities();
+        virtualClinicEntities1 db = new virtualClinicEntities1();
 
         [HttpGet]
         public HttpResponseMessage Nurselogin(string username, string password)
@@ -40,7 +40,7 @@ namespace fyp.Controllers
         image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
                 vital vit = new vital();
                 vit.nurseID = int.Parse(request["nurseID"]);
-                vit.pid = int.Parse(request["pid"]);
+                vit.patient_id = int.Parse(request["patient_id"]);
                 vit.bp = (request["bp"]);
                 vit.sugar = int.Parse(request["sugar"]);
                 vit.temper = float.Parse(request["temper"]);
@@ -60,7 +60,7 @@ namespace fyp.Controllers
         {
             try
             {
-               var fetchedpatient= (from p in db.patients join v in db.vitals on p.pid equals v.pid select new { p.fullname, p.dob, p.gender, v }).FirstOrDefault();
+               var fetchedpatient= (from p in db.patients join v in db.vitals on p.patient_id equals v.patient_id select new { p.fullname, p.dob, p.gender, v }).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, fetchedpatient);
             }
             catch (Exception ex)

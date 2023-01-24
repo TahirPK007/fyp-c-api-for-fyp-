@@ -15,12 +15,12 @@ namespace fyp.Models
     public partial class vital
     {
         public int vitalID { get; set; }
+        public Nullable<int> nurseID { get; set; }
+        public Nullable<int> patient_id { get; set; }
         public string bp { get; set; }
         public Nullable<int> sugar { get; set; }
         public Nullable<double> temper { get; set; }
         public string symptoms { get; set; }
         public string image { get; set; }
-        public Nullable<int> nurseID { get; set; }
-        public Nullable<int> pid { get; set; }
     }
 }

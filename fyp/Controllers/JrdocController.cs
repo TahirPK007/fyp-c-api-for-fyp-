@@ -10,7 +10,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities db = new virtualClinicEntities();
+        virtualClinicEntities1 db = new virtualClinicEntities1();
         [HttpPost]
         public HttpResponseMessage Jrsignup(juniorDoctor jr)
         {
@@ -68,8 +68,8 @@ namespace fyp.Controllers
             {
                 history h = new history();
                 var d = DateTime.Now;
-                h.pid = his.pid;
-                h.did = his.did;
+                h.patient_id = his.patient_id;
+                h.jrdoc_id = his.jrdoc_id;
                 h.prescription = his.prescription;
                 h.date = d.ToShortDateString();
                 h.time = d.ToShortTimeString();

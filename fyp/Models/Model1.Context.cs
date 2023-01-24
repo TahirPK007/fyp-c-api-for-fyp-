@@ -13,10 +13,10 @@ namespace fyp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class virtualClinicEntities : DbContext
+    public partial class virtualClinicEntities1 : DbContext
     {
-        public virtualClinicEntities()
-            : base("name=virtualClinicEntities")
+        public virtualClinicEntities1()
+            : base("name=virtualClinicEntities1")
         {
         }
     
@@ -33,6 +33,7 @@ namespace fyp.Models
         public virtual DbSet<patient> patients { get; set; }
         public virtual DbSet<rating> ratings { get; set; }
         public virtual DbSet<seneriorDoctor> seneriorDoctors { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<vital> vitals { get; set; }
     }
 }

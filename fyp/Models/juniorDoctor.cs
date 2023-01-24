@@ -21,7 +21,7 @@ namespace fyp.Models
             this.histories = new HashSet<history>();
         }
     
-        public int did { get; set; }
+        public int jrdoc_id { get; set; }
         public string fullname { get; set; }
         public string fathername { get; set; }
         public string email { get; set; }

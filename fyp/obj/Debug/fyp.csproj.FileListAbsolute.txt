@@ -86,4 +86,3 @@ D:\fyp\fyp\obj\Debug\fyp.csproj.CoreCompileInputs.cache
 D:\fyp\fyp\obj\Debug\fyp.csproj.CopyComplete
 D:\fyp\fyp\obj\Debug\fyp.dll
 D:\fyp\fyp\obj\Debug\fyp.pdb
-D:\fyp\fyp\obj\Debug\fyp.csproj.AssemblyReference.cache

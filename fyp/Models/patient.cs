@@ -22,7 +22,7 @@ namespace fyp.Models
             this.histories = new HashSet<history>();
         }
     
-        public int pid { get; set; }
+        public int patient_id { get; set; }
         public string cnic { get; set; }
         public string fullname { get; set; }
         public string relation { get; set; }

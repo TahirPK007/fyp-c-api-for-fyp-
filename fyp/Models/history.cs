@@ -21,8 +21,8 @@ namespace fyp.Models
         }
     
         public int historyID { get; set; }
-        public Nullable<int> pid { get; set; }
-        public Nullable<int> did { get; set; }
+        public Nullable<int> patient_id { get; set; }
+        public Nullable<int> jrdoc_id { get; set; }
         public string prescription { get; set; }
         public string date { get; set; }
         public string time { get; set; }

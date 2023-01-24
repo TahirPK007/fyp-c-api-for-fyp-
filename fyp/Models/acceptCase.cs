@@ -15,8 +15,8 @@ namespace fyp.Models
     public partial class acceptCase
     {
         public int acceptCaseID { get; set; }
-        public Nullable<int> pid { get; set; }
-        public Nullable<int> did { get; set; }
+        public Nullable<int> patient_id { get; set; }
+        public Nullable<int> jrdoc_id { get; set; }
         public string time { get; set; }
     
         public virtual juniorDoctor juniorDoctor { get; set; }

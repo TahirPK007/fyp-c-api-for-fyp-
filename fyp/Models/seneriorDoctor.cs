@@ -20,7 +20,7 @@ namespace fyp.Models
             this.ratings = new HashSet<rating>();
         }
     
-        public int sid { get; set; }
+        public int srdoc_id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string role { get; set; }
