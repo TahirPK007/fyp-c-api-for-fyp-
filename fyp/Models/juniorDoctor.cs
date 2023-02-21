@@ -22,8 +22,8 @@ namespace fyp.Models
         }
     
         public int jrdoc_id { get; set; }
-        public string fullname { get; set; }
-        public string fathername { get; set; }
+        public string full_name { get; set; }
+        public string father_name { get; set; }
         public string email { get; set; }
         public string password { get; set; }
         public string dob { get; set; }

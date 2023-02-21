@@ -9,14 +9,6 @@
     <Property Name="jrdoc_id" Type="int" />
     <Property Name="time" Type="varchar" MaxLength="100" />
   </EntityType>
-  <EntityType Name="examine">
-    <Key>
-      <PropertyRef Name="examineID" />
-    </Key>
-    <Property Name="examineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="patient_id" Type="int" />
-    <Property Name="nurseID" Type="int" />
-  </EntityType>
   <EntityType Name="history">
     <Key>
       <PropertyRef Name="historyID" />
@@ -25,6 +17,7 @@
     <Property Name="patient_id" Type="int" />
     <Property Name="jrdoc_id" Type="int" />
     <Property Name="prescription" Type="varchar" MaxLength="200" />
+    <Property Name="rating" Type="int" />
     <Property Name="date" Type="varchar" MaxLength="50" />
     <Property Name="time" Type="varchar" MaxLength="50" />
   </EntityType>
@@ -33,13 +26,13 @@
       <PropertyRef Name="jrdoc_id" />
     </Key>
     <Property Name="jrdoc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="fullname" Type="varchar" MaxLength="50" />
-    <Property Name="fathername" Type="varchar" MaxLength="50" />
+    <Property Name="full_name" Type="varchar" MaxLength="50" />
+    <Property Name="father_name" Type="varchar" MaxLength="50" />
     <Property Name="email" Type="varchar" MaxLength="30" />
     <Property Name="password" Type="varchar" MaxLength="40" />
     <Property Name="dob" Type="varchar" MaxLength="50" />
     <Property Name="gender" Type="varchar" MaxLength="30" />
-    <Property Name="contact" Type="varchar" MaxLength="11" />
+    <Property Name="contact" Type="varchar" MaxLength="50" />
     <Property Name="role" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="nurse">
@@ -47,8 +40,8 @@
       <PropertyRef Name="nurseID" />
     </Key>
     <Property Name="nurseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="fullname" Type="varchar" MaxLength="50" />
-    <Property Name="username" Type="varchar" MaxLength="30" />
+    <Property Name="full_name" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="30" />
     <Property Name="password" Type="varchar" MaxLength="40" />
     <Property Name="role" Type="varchar" MaxLength="50" />
   </EntityType>
@@ -58,56 +51,46 @@
     </Key>
     <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cnic" Type="varchar" MaxLength="40" />
-    <Property Name="fullname" Type="varchar" MaxLength="30" />
+    <Property Name="full_name" Type="varchar" MaxLength="30" />
     <Property Name="relation" Type="varchar" MaxLength="50" />
-    <Property Name="relativename" Type="varchar" MaxLength="50" />
+    <Property Name="relative_name" Type="varchar" MaxLength="50" />
     <Property Name="dob" Type="varchar" MaxLength="50" />
     <Property Name="gender" Type="varchar" MaxLength="20" />
     <Property Name="date" Type="varchar" MaxLength="50" />
     <Property Name="time" Type="varchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="rating">
-    <Key>
-      <PropertyRef Name="ratingID" />
-    </Key>
-    <Property Name="ratingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="historyID" Type="int" />
-    <Property Name="srdoc_id" Type="int" />
-    <Property Name="rating" Type="int" />
-  </EntityType>
-  <EntityType Name="seneriorDoctor">
+  <EntityType Name="seniorDoctor">
     <Key>
       <PropertyRef Name="srdoc_id" />
     </Key>
     <Property Name="srdoc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="full_name" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
     <Property Name="password" Type="varchar" MaxLength="50" />
     <Property Name="role" Type="varchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
+  <EntityType Name="visits">
     <Key>
-      <PropertyRef Name="diagram_id" />
+      <PropertyRef Name="visit_id" />
     </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
+    <Property Name="visit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="patient_id" Type="int" />
+    <Property Name="date" Type="varchar" MaxLength="50" />
+    <Property Name="time" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="vitals">
     <Key>
       <PropertyRef Name="vitalID" />
     </Key>
     <Property Name="vitalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nurseID" Type="int" />
     <Property Name="patient_id" Type="int" />
-    <Property Name="bp" Type="varchar" MaxLength="40" />
-    <Property Name="sugar" Type="int" />
-    <Property Name="temper" Type="float" />
+    <Property Name="blood_pressure" Type="varchar" MaxLength="40" />
+    <Property Name="sugar" Type="varchar" MaxLength="50" />
+    <Property Name="temperature" Type="varchar" MaxLength="50" />
     <Property Name="symptoms" Type="varchar" MaxLength="100" />
-    <Property Name="image" Type="varchar" MaxLength="50" />
+    <Property Name="image" Type="varchar(max)" />
   </EntityType>
-  <Association Name="FK__acceptCase__did__59FA5E80">
+  <Association Name="FK__acceptCase__did__52593CB8">
     <End Role="juniorDoctor" Type="Self.juniorDoctor" Multiplicity="0..1" />
     <End Role="acceptCase" Type="Self.acceptCase" Multiplicity="*" />
     <ReferentialConstraint>
@@ -119,7 +102,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__acceptCase__pid__59063A47">
+  <Association Name="FK__acceptCase__pid__5165187F">
     <End Role="patient" Type="Self.patient" Multiplicity="0..1" />
     <End Role="acceptCase" Type="Self.acceptCase" Multiplicity="*" />
     <ReferentialConstraint>
@@ -131,31 +114,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__examine__nurseID__5441852A">
-    <End Role="nurse" Type="Self.nurse" Multiplicity="0..1" />
-    <End Role="examine" Type="Self.examine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="nurse">
-        <PropertyRef Name="nurseID" />
-      </Principal>
-      <Dependent Role="examine">
-        <PropertyRef Name="nurseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__examine__pid__534D60F1">
-    <End Role="patient" Type="Self.patient" Multiplicity="0..1" />
-    <End Role="examine" Type="Self.examine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="patient">
-        <PropertyRef Name="patient_id" />
-      </Principal>
-      <Dependent Role="examine">
-        <PropertyRef Name="patient_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__history__did__5DCAEF64">
+  <Association Name="FK__history__did__5629CD9C">
     <End Role="juniorDoctor" Type="Self.juniorDoctor" Multiplicity="0..1" />
     <End Role="history" Type="Self.history" Multiplicity="*" />
     <ReferentialConstraint>
@@ -167,7 +126,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__history__pid__5CD6CB2B">
+  <Association Name="FK__history__pid__5535A963">
     <End Role="patient" Type="Self.patient" Multiplicity="0..1" />
     <End Role="history" Type="Self.history" Multiplicity="*" />
     <ReferentialConstraint>
@@ -176,75 +135,33 @@
       </Principal>
       <Dependent Role="history">
         <PropertyRef Name="patient_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__rating__historyI__628FA481">
-    <End Role="history" Type="Self.history" Multiplicity="0..1" />
-    <End Role="rating" Type="Self.rating" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="history">
-        <PropertyRef Name="historyID" />
-      </Principal>
-      <Dependent Role="rating">
-        <PropertyRef Name="historyID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__rating__sid__6383C8BA">
-    <End Role="seneriorDoctor" Type="Self.seneriorDoctor" Multiplicity="0..1" />
-    <End Role="rating" Type="Self.rating" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="seneriorDoctor">
-        <PropertyRef Name="srdoc_id" />
-      </Principal>
-      <Dependent Role="rating">
-        <PropertyRef Name="srdoc_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="virtualClinicModelStoreContainer">
     <EntitySet Name="acceptCase" EntityType="Self.acceptCase" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="examine" EntityType="Self.examine" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="history" EntityType="Self.history" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="juniorDoctor" EntityType="Self.juniorDoctor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="nurse" EntityType="Self.nurse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="rating" EntityType="Self.rating" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="seneriorDoctor" EntityType="Self.seneriorDoctor" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="seniorDoctor" EntityType="Self.seniorDoctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="visits" EntityType="Self.visits" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vitals" EntityType="Self.vitals" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__acceptCase__did__59FA5E80" Association="Self.FK__acceptCase__did__59FA5E80">
+    <AssociationSet Name="FK__acceptCase__did__52593CB8" Association="Self.FK__acceptCase__did__52593CB8">
       <End Role="juniorDoctor" EntitySet="juniorDoctor" />
       <End Role="acceptCase" EntitySet="acceptCase" />
     </AssociationSet>
-    <AssociationSet Name="FK__acceptCase__pid__59063A47" Association="Self.FK__acceptCase__pid__59063A47">
+    <AssociationSet Name="FK__acceptCase__pid__5165187F" Association="Self.FK__acceptCase__pid__5165187F">
       <End Role="patient" EntitySet="patient" />
       <End Role="acceptCase" EntitySet="acceptCase" />
     </AssociationSet>
-    <AssociationSet Name="FK__examine__nurseID__5441852A" Association="Self.FK__examine__nurseID__5441852A">
-      <End Role="nurse" EntitySet="nurse" />
-      <End Role="examine" EntitySet="examine" />
-    </AssociationSet>
-    <AssociationSet Name="FK__examine__pid__534D60F1" Association="Self.FK__examine__pid__534D60F1">
-      <End Role="patient" EntitySet="patient" />
-      <End Role="examine" EntitySet="examine" />
-    </AssociationSet>
-    <AssociationSet Name="FK__history__did__5DCAEF64" Association="Self.FK__history__did__5DCAEF64">
+    <AssociationSet Name="FK__history__did__5629CD9C" Association="Self.FK__history__did__5629CD9C">
       <End Role="juniorDoctor" EntitySet="juniorDoctor" />
       <End Role="history" EntitySet="history" />
     </AssociationSet>
-    <AssociationSet Name="FK__history__pid__5CD6CB2B" Association="Self.FK__history__pid__5CD6CB2B">
+    <AssociationSet Name="FK__history__pid__5535A963" Association="Self.FK__history__pid__5535A963">
       <End Role="patient" EntitySet="patient" />
       <End Role="history" EntitySet="history" />
-    </AssociationSet>
-    <AssociationSet Name="FK__rating__historyI__628FA481" Association="Self.FK__rating__historyI__628FA481">
-      <End Role="history" EntitySet="history" />
-      <End Role="rating" EntitySet="rating" />
-    </AssociationSet>
-    <AssociationSet Name="FK__rating__sid__6383C8BA" Association="Self.FK__rating__sid__6383C8BA">
-      <End Role="seneriorDoctor" EntitySet="seneriorDoctor" />
-      <End Role="rating" EntitySet="rating" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

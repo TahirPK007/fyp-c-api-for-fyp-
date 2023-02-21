@@ -14,19 +14,10 @@ namespace fyp.Models
     
     public partial class nurse
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public nurse()
-        {
-            this.examines = new HashSet<examine>();
-        }
-    
         public int nurseID { get; set; }
-        public string fullname { get; set; }
-        public string username { get; set; }
+        public string full_name { get; set; }
+        public string email { get; set; }
         public string password { get; set; }
         public string role { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<examine> examines { get; set; }
     }
 }

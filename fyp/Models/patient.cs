@@ -18,15 +18,14 @@ namespace fyp.Models
         public patient()
         {
             this.acceptCases = new HashSet<acceptCase>();
-            this.examines = new HashSet<examine>();
             this.histories = new HashSet<history>();
         }
     
         public int patient_id { get; set; }
         public string cnic { get; set; }
-        public string fullname { get; set; }
+        public string full_name { get; set; }
         public string relation { get; set; }
-        public string relativename { get; set; }
+        public string relative_name { get; set; }
         public string dob { get; set; }
         public string gender { get; set; }
         public string date { get; set; }
@@ -34,8 +33,6 @@ namespace fyp.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<acceptCase> acceptCases { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<examine> examines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<history> histories { get; set; }
     }

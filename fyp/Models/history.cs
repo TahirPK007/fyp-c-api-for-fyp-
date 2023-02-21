@@ -14,22 +14,15 @@ namespace fyp.Models
     
     public partial class history
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public history()
-        {
-            this.ratings = new HashSet<rating>();
-        }
-    
         public int historyID { get; set; }
         public Nullable<int> patient_id { get; set; }
         public Nullable<int> jrdoc_id { get; set; }
         public string prescription { get; set; }
+        public Nullable<int> rating { get; set; }
         public string date { get; set; }
         public string time { get; set; }
     
         public virtual juniorDoctor juniorDoctor { get; set; }
         public virtual patient patient { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<rating> ratings { get; set; }
     }
 }

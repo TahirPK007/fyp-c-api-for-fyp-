@@ -10,7 +10,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities1 db = new virtualClinicEntities1();
+        virtualClinicEntities2 db=new virtualClinicEntities2();
         [HttpPost]
         public HttpResponseMessage Jrsignup(juniorDoctor jr)
         {
@@ -21,7 +21,7 @@ namespace fyp.Controllers
                 { 
                 db.juniorDoctors.Add(jr);
                 db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, "successfully signed up");
+                return Request.CreateResponse(HttpStatusCode.OK, "true");
                 }
                 else
                 {
@@ -33,7 +33,7 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage Jrlogin(string email, string password)
         {
 

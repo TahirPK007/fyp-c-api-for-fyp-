@@ -12,20 +12,12 @@ namespace fyp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class seneriorDoctor
+    public partial class seniorDoctor
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public seneriorDoctor()
-        {
-            this.ratings = new HashSet<rating>();
-        }
-    
         public int srdoc_id { get; set; }
-        public string username { get; set; }
+        public string full_name { get; set; }
+        public string email { get; set; }
         public string password { get; set; }
         public string role { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<rating> ratings { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities1">
+  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities2">
     <EntitySetMapping Name="acceptCases">
       <EntityTypeMapping TypeName="virtualClinicModel.acceptCase">
         <MappingFragment StoreEntitySet="acceptCase">
@@ -11,15 +11,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="examines">
-      <EntityTypeMapping TypeName="virtualClinicModel.examine">
-        <MappingFragment StoreEntitySet="examine">
-          <ScalarProperty Name="examineID" ColumnName="examineID" />
-          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
-          <ScalarProperty Name="nurseID" ColumnName="nurseID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="histories">
       <EntityTypeMapping TypeName="virtualClinicModel.history">
         <MappingFragment StoreEntitySet="history">
@@ -27,6 +18,7 @@
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
           <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
           <ScalarProperty Name="prescription" ColumnName="prescription" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="time" ColumnName="time" />
         </MappingFragment>
@@ -36,8 +28,8 @@
       <EntityTypeMapping TypeName="virtualClinicModel.juniorDoctor">
         <MappingFragment StoreEntitySet="juniorDoctor">
           <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
-          <ScalarProperty Name="fullname" ColumnName="fullname" />
-          <ScalarProperty Name="fathername" ColumnName="fathername" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="father_name" ColumnName="father_name" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="dob" ColumnName="dob" />
@@ -51,8 +43,8 @@
       <EntityTypeMapping TypeName="virtualClinicModel.nurse">
         <MappingFragment StoreEntitySet="nurse">
           <ScalarProperty Name="nurseID" ColumnName="nurseID" />
-          <ScalarProperty Name="fullname" ColumnName="fullname" />
-          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="role" ColumnName="role" />
         </MappingFragment>
@@ -63,9 +55,9 @@
         <MappingFragment StoreEntitySet="patient">
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
           <ScalarProperty Name="cnic" ColumnName="cnic" />
-          <ScalarProperty Name="fullname" ColumnName="fullname" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
           <ScalarProperty Name="relation" ColumnName="relation" />
-          <ScalarProperty Name="relativename" ColumnName="relativename" />
+          <ScalarProperty Name="relative_name" ColumnName="relative_name" />
           <ScalarProperty Name="dob" ColumnName="dob" />
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="date" ColumnName="date" />
@@ -73,34 +65,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ratings">
-      <EntityTypeMapping TypeName="virtualClinicModel.rating">
-        <MappingFragment StoreEntitySet="rating">
-          <ScalarProperty Name="ratingID" ColumnName="ratingID" />
-          <ScalarProperty Name="historyID" ColumnName="historyID" />
+    <EntitySetMapping Name="seniorDoctors">
+      <EntityTypeMapping TypeName="virtualClinicModel.seniorDoctor">
+        <MappingFragment StoreEntitySet="seniorDoctor">
           <ScalarProperty Name="srdoc_id" ColumnName="srdoc_id" />
-          <ScalarProperty Name="rating1" ColumnName="rating" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="seneriorDoctors">
-      <EntityTypeMapping TypeName="virtualClinicModel.seneriorDoctor">
-        <MappingFragment StoreEntitySet="seneriorDoctor">
-          <ScalarProperty Name="srdoc_id" ColumnName="srdoc_id" />
-          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="role" ColumnName="role" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="virtualClinicModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
+    <EntitySetMapping Name="visits">
+      <EntityTypeMapping TypeName="virtualClinicModel.visit">
+        <MappingFragment StoreEntitySet="visits">
+          <ScalarProperty Name="visit_id" ColumnName="visit_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="time" ColumnName="time" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -108,11 +90,10 @@
       <EntityTypeMapping TypeName="virtualClinicModel.vital">
         <MappingFragment StoreEntitySet="vitals">
           <ScalarProperty Name="vitalID" ColumnName="vitalID" />
-          <ScalarProperty Name="nurseID" ColumnName="nurseID" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
-          <ScalarProperty Name="bp" ColumnName="bp" />
+          <ScalarProperty Name="blood_pressure" ColumnName="blood_pressure" />
           <ScalarProperty Name="sugar" ColumnName="sugar" />
-          <ScalarProperty Name="temper" ColumnName="temper" />
+          <ScalarProperty Name="temperature" ColumnName="temperature" />
           <ScalarProperty Name="symptoms" ColumnName="symptoms" />
           <ScalarProperty Name="image" ColumnName="image" />
         </MappingFragment>

@@ -12,12 +12,11 @@ namespace fyp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class visit
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int visit_id { get; set; }
+        public Nullable<int> patient_id { get; set; }
+        public string date { get; set; }
+        public string time { get; set; }
     }
 }

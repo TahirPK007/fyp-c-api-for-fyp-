@@ -12,16 +12,16 @@ namespace fyp.Controllers
 {
     public class NurselController : ApiController
     {
-        virtualClinicEntities1 db = new virtualClinicEntities1();
+        virtualClinicEntities2 db = new virtualClinicEntities2();
 
-        [HttpGet]
-        public HttpResponseMessage Nurselogin(string username, string password)
+        [HttpPost]
+        public HttpResponseMessage Nurselogin(string email, string password)
         {
 
-            var user = db.nurses.Where(u => u.username == username && u.password == password);
+            var user = db.nurses.Where(u => u.email == email && u.password == password);
             if (user.Count() > 0)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, "successfully logged in");
+                return Request.CreateResponse(HttpStatusCode.OK, "true");
             }
             else
             {
@@ -39,11 +39,10 @@ namespace fyp.Controllers
         String filename = image.FileName;
         image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
                 vital vit = new vital();
-                vit.nurseID = int.Parse(request["nurseID"]);
                 vit.patient_id = int.Parse(request["patient_id"]);
-                vit.bp = (request["bp"]);
-                vit.sugar = int.Parse(request["sugar"]);
-                vit.temper = float.Parse(request["temper"]);
+                vit.blood_pressure = (request["blood_pressure"]);
+                vit.sugar = (request["sugar"]);
+                vit.temperature = (request["temperature"]);
                 vit.symptoms= (request["symptoms"]);
                 vit.image = filename;
                 db.vitals.Add(vit);
@@ -60,7 +59,7 @@ namespace fyp.Controllers
         {
             try
             {
-               var fetchedpatient= (from p in db.patients join v in db.vitals on p.patient_id equals v.patient_id select new { p.fullname, p.dob, p.gender, v }).ToList();
+               var fetchedpatient= (from p in db.patients join v in db.vitals on p.patient_id equals v.patient_id select new { p.full_name, p.dob, p.gender, v }).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, fetchedpatient);
             }
             catch (Exception ex)
