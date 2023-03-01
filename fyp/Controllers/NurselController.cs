@@ -35,11 +35,11 @@ namespace fyp.Controllers
             {
                 HttpRequest request = HttpContext.Current.Request;
                 var image = request.Files["image"];
-        string extension = image.FileName.Split('.')[1];
-        String filename = image.FileName;
-        image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
+                string extension = image.FileName.Split('.')[1];
+                string filename = image.FileName;
+                image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
                 vital vit = new vital();
-                vit.patient_id = int.Parse(request["patient_id"]);
+                //vit.patient_id = int.Parse(request["patient_id"]);
                 vit.blood_pressure = (request["blood_pressure"]);
                 vit.sugar = (request["sugar"]);
                 vit.temperature = (request["temperature"]);

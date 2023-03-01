@@ -40,7 +40,7 @@ namespace fyp.Controllers
             var user = db.juniorDoctors.Where(u => u.email == email && u.password == password);
             if (user.Count() > 0)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, "successfully logged in");
+                return Request.CreateResponse(HttpStatusCode.OK, "jrdoc");
             }
             else
             {

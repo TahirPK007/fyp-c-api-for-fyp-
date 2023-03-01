@@ -12,7 +12,7 @@ namespace fyp.Controllers
     {
         virtualClinicEntities2 db = new virtualClinicEntities2();
         [HttpPost]
-        public HttpResponseMessage Addpatient(patient pat,int nurseid)
+        public HttpResponseMessage Addpat(patient pat)
         {
             try
             {

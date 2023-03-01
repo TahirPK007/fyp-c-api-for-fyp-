@@ -31,8 +31,8 @@
     <Property Name="email" Type="varchar" MaxLength="30" />
     <Property Name="password" Type="varchar" MaxLength="40" />
     <Property Name="dob" Type="varchar" MaxLength="50" />
-    <Property Name="gender" Type="varchar" MaxLength="30" />
     <Property Name="contact" Type="varchar" MaxLength="50" />
+    <Property Name="gender" Type="varchar" MaxLength="30" />
     <Property Name="role" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="nurse">
