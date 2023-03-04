@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities2">
+  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities3">
     <EntitySetMapping Name="acceptCases">
       <EntityTypeMapping TypeName="virtualClinicModel.acceptCase">
         <MappingFragment StoreEntitySet="acceptCase">
@@ -33,8 +33,8 @@
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="dob" ColumnName="dob" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="role" ColumnName="role" />
         </MappingFragment>
       </EntityTypeMapping>

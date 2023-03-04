@@ -22,7 +22,7 @@ namespace fyp.Models
         }
     
         public int patient_id { get; set; }
-        public string cnic { get; set; }
+        public Nullable<int> cnic { get; set; }
         public string full_name { get; set; }
         public string relation { get; set; }
         public string relative_name { get; set; }

@@ -35,8 +35,8 @@
     <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
     <Property Name="dob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="gender" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="acceptCases" Relationship="Self.FK__acceptCase__did__52593CB8" FromRole="juniorDoctor" ToRole="acceptCase" />
     <NavigationProperty Name="histories" Relationship="Self.FK__history__did__5629CD9C" FromRole="juniorDoctor" ToRole="history" />
@@ -56,7 +56,7 @@
       <PropertyRef Name="patient_id" />
     </Key>
     <Property Name="patient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cnic" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="cnic" Type="Int32" />
     <Property Name="full_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="relation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="relative_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -146,7 +146,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="virtualClinicEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="acceptCases" EntityType="Self.acceptCase" />
     <EntitySet Name="histories" EntityType="Self.history" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />

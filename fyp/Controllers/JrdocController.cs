@@ -10,7 +10,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities2 db=new virtualClinicEntities2();
+        virtualClinicEntities3 db = new virtualClinicEntities3();
         [HttpPost]
         public HttpResponseMessage Jrsignup(juniorDoctor jr)
         {

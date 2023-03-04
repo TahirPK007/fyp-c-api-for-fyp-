@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Http;
 using fyp.Models;
 
@@ -12,7 +13,7 @@ namespace fyp.Controllers
 {
     public class NurselController : ApiController
     {
-        virtualClinicEntities2 db = new virtualClinicEntities2();
+        virtualClinicEntities3 db = new virtualClinicEntities3();
 
         [HttpPost]
         public HttpResponseMessage Nurselogin(string email, string password)
@@ -39,7 +40,7 @@ namespace fyp.Controllers
                 string filename = image.FileName;
                 image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
                 vital vit = new vital();
-                //vit.patient_id = int.Parse(request["patient_id"]);
+                vit.patient_id = int.Parse(request["patient_id"]);
                 vit.blood_pressure = (request["blood_pressure"]);
                 vit.sugar = (request["sugar"]);
                 vit.temperature = (request["temperature"]);
