@@ -24,7 +24,7 @@ namespace fyp.Controllers
                     p.full_name = pat.full_name;
                     p.relation = pat.relation;
                     p.relative_name = pat.relative_name;
-                    p.dob = pat.date;
+                    p.dob = pat.dob;
                     p.gender = pat.gender;
                     p.date = d.ToShortDateString();
                     p.time = d.ToShortTimeString();
