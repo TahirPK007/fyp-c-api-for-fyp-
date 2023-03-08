@@ -79,6 +79,8 @@
     <EntitySetMapping Name="visits">
       <EntityTypeMapping TypeName="virtualClinicModel.visit">
         <MappingFragment StoreEntitySet="visits">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
           <ScalarProperty Name="visit_id" ColumnName="visit_id" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
           <ScalarProperty Name="date" ColumnName="date" />

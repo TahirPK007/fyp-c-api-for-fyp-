@@ -18,5 +18,7 @@ namespace fyp.Models
         public Nullable<int> patient_id { get; set; }
         public string date { get; set; }
         public string time { get; set; }
+        public Nullable<int> jrdoc_id { get; set; }
+        public Nullable<int> status { get; set; }
     }
 }

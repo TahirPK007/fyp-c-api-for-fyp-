@@ -33,6 +33,21 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        [HttpGet]
+        public HttpResponseMessage MyNewCases(int id)
+        {
+            try
+            {
+                var visits = db.visits.Where(v => v.status == 1 && v.jrdoc_id == id);
+
+                return Request.CreateResponse(HttpStatusCode.OK, visits);
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
         [HttpPost]
         public HttpResponseMessage Jrlogin(string email, string password)
         {

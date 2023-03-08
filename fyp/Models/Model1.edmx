@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="virtualClinicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="virtualClinicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="acceptCase">
           <Key>
             <PropertyRef Name="acceptCaseID" />
@@ -80,6 +80,8 @@
           </Key>
           <Property Name="visit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="patient_id" Type="int" />
+          <Property Name="jrdoc_id" Type="int" />
+          <Property Name="status" Type="int" />
           <Property Name="date" Type="varchar" MaxLength="50" />
           <Property Name="time" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -169,8 +171,7 @@
             <End Role="history" EntitySet="history" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="virtualClinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -259,6 +260,8 @@
           <Property Name="patient_id" Type="Int32" />
           <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jrdoc_id" Type="Int32" />
+          <Property Name="status" Type="Int32" />
         </EntityType>
         <EntityType Name="vital">
           <Key>
@@ -430,6 +433,8 @@
           <EntitySetMapping Name="visits">
             <EntityTypeMapping TypeName="virtualClinicModel.visit">
               <MappingFragment StoreEntitySet="visits">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
                 <ScalarProperty Name="visit_id" ColumnName="visit_id" />
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
                 <ScalarProperty Name="date" ColumnName="date" />

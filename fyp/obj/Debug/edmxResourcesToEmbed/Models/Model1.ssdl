@@ -75,6 +75,8 @@
     </Key>
     <Property Name="visit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="patient_id" Type="int" />
+    <Property Name="jrdoc_id" Type="int" />
+    <Property Name="status" Type="int" />
     <Property Name="date" Type="varchar" MaxLength="50" />
     <Property Name="time" Type="varchar" MaxLength="50" />
   </EntityType>
