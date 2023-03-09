@@ -30,6 +30,7 @@ namespace fyp.Models
         public string contact { get; set; }
         public string gender { get; set; }
         public string role { get; set; }
+        public Nullable<int> status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<acceptCase> acceptCases { get; set; }

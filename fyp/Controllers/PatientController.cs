@@ -12,7 +12,7 @@ namespace fyp.Controllers
 {
     public class PatientController : ApiController
     {
-        virtualClinicEntities3 db = new virtualClinicEntities3();
+        virtualClinicEntities5 db = new virtualClinicEntities5();
         [HttpPost]
         public HttpResponseMessage Addpat(patient pat)
         {
@@ -53,12 +53,13 @@ namespace fyp.Controllers
             }
         }
         [HttpPost]
-        public HttpResponseMessage Visits(int patient_id)
+        public HttpResponseMessage Visits(int patient_id,int status)
         {
             try { 
             visit v = new visit();
             var d = DateTime.Now;
             v.patient_id= patient_id;
+            v.status=status;
             v.date = d.ToShortDateString();
             v.time = d.ToLongTimeString();
                 db.visits.Add(v);

@@ -39,6 +39,7 @@
           <Property Name="contact" Type="varchar" MaxLength="50" />
           <Property Name="gender" Type="varchar" MaxLength="30" />
           <Property Name="role" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
         </EntityType>
         <EntityType Name="nurse">
           <Key>
@@ -215,6 +216,7 @@
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="acceptCases" Relationship="Self.FK__acceptCase__did__52593CB8" FromRole="juniorDoctor" ToRole="acceptCase" />
           <NavigationProperty Name="histories" Relationship="Self.FK__history__did__5629CD9C" FromRole="juniorDoctor" ToRole="history" />
+          <Property Name="status" Type="Int32" />
         </EntityType>
         <EntityType Name="nurse">
           <Key>
@@ -258,10 +260,10 @@
           </Key>
           <Property Name="visit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="patient_id" Type="Int32" />
-          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="jrdoc_id" Type="Int32" />
           <Property Name="status" Type="Int32" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="vital">
           <Key>
@@ -323,7 +325,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="virtualClinicEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="virtualClinicEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="acceptCases" EntityType="Self.acceptCase" />
           <EntitySet Name="histories" EntityType="Self.history" />
           <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
@@ -354,7 +356,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities3">
+        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities5">
           <EntitySetMapping Name="acceptCases">
             <EntityTypeMapping TypeName="virtualClinicModel.acceptCase">
               <MappingFragment StoreEntitySet="acceptCase">
@@ -381,6 +383,7 @@
           <EntitySetMapping Name="juniorDoctors">
             <EntityTypeMapping TypeName="virtualClinicModel.juniorDoctor">
               <MappingFragment StoreEntitySet="juniorDoctor">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
                 <ScalarProperty Name="full_name" ColumnName="full_name" />
                 <ScalarProperty Name="father_name" ColumnName="father_name" />
@@ -433,10 +436,10 @@
           <EntitySetMapping Name="visits">
             <EntityTypeMapping TypeName="virtualClinicModel.visit">
               <MappingFragment StoreEntitySet="visits">
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
                 <ScalarProperty Name="visit_id" ColumnName="visit_id" />
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="time" ColumnName="time" />
               </MappingFragment>

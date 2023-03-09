@@ -13,7 +13,7 @@ namespace fyp.Controllers
 {
     public class NurselController : ApiController
     {
-        virtualClinicEntities3 db = new virtualClinicEntities3();
+        virtualClinicEntities5 db = new virtualClinicEntities5();
 
         [HttpPost]
         public HttpResponseMessage Nurselogin(string email, string password)
@@ -34,21 +34,40 @@ namespace fyp.Controllers
         {
             try
             {
+                
                 HttpRequest request = HttpContext.Current.Request;
                 var image = request.Files["image"];
-                string extension = image.FileName.Split('.')[1];
+                if (image != null)
+                {
+                    string extension = image.FileName.Split('.')[1];
                 string filename = image.FileName;
                 image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
                 vital vit = new vital();
-                vit.patient_id = int.Parse(request["patient_id"]);
+                
+                    vit.patient_id = int.Parse(request["patient_id"]);
                 vit.blood_pressure = (request["blood_pressure"]);
                 vit.sugar = (request["sugar"]);
                 vit.temperature = (request["temperature"]);
-                vit.symptoms= (request["symptoms"]);
+                vit.symptoms = (request["symptoms"]);
                 vit.image = filename;
                 db.vitals.Add(vit);
                 db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
+                    return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
+                }
+            else
+                {
+                    vital vit = new vital();
+                    vit.patient_id = int.Parse(request["patient_id"]);
+                    vit.blood_pressure = (request["blood_pressure"]);
+                    vit.sugar = (request["sugar"]);
+                    vit.temperature = (request["temperature"]);
+                    vit.symptoms = (request["symptoms"]);
+                    vit.image = "";
+                    db.vitals.Add(vit);
+                    db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
+                }
+                
             }
             catch (Exception ex)
             {

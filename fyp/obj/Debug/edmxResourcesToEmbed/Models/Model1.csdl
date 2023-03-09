@@ -40,6 +40,7 @@
     <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="acceptCases" Relationship="Self.FK__acceptCase__did__52593CB8" FromRole="juniorDoctor" ToRole="acceptCase" />
     <NavigationProperty Name="histories" Relationship="Self.FK__history__did__5629CD9C" FromRole="juniorDoctor" ToRole="history" />
+    <Property Name="status" Type="Int32" />
   </EntityType>
   <EntityType Name="nurse">
     <Key>
@@ -83,10 +84,10 @@
     </Key>
     <Property Name="visit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="patient_id" Type="Int32" />
-    <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="jrdoc_id" Type="Int32" />
     <Property Name="status" Type="Int32" />
+    <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="vital">
     <Key>
@@ -148,7 +149,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="virtualClinicEntities3" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities5" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="acceptCases" EntityType="Self.acceptCase" />
     <EntitySet Name="histories" EntityType="Self.history" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />

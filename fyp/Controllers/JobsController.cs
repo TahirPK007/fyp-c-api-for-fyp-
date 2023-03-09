@@ -10,7 +10,7 @@ namespace fyp.Controllers
 {
     public class JobsController : ApiController
     {
-        virtualClinicEntities3 db = new virtualClinicEntities3();
+        virtualClinicEntities5 db = new virtualClinicEntities5();
 
         [HttpGet]
         public HttpResponseMessage AssignPatientToDoctor()
@@ -25,7 +25,7 @@ namespace fyp.Controllers
             var availableDoctors = new List<juniorDoctor>();
 
             //now check each doctor 1-by-1 that is available and add to list
-            foreach (var doc in db.juniorDoctors)
+            foreach (var doc in db.juniorDoctors.Where(x => x.status == 1))
             {
                 var result = currentlyBusy.FirstOrDefault(v =>v.jrdoc_id == doc.jrdoc_id);
                 if (result == null)
@@ -44,7 +44,6 @@ namespace fyp.Controllers
                     availableDoctors.Remove(doctor);
                 }
             }
-
             db.SaveChanges();
          return Request.CreateResponse(HttpStatusCode.OK);
         }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities3">
+  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities5">
     <EntitySetMapping Name="acceptCases">
       <EntityTypeMapping TypeName="virtualClinicModel.acceptCase">
         <MappingFragment StoreEntitySet="acceptCase">
@@ -27,6 +27,7 @@
     <EntitySetMapping Name="juniorDoctors">
       <EntityTypeMapping TypeName="virtualClinicModel.juniorDoctor">
         <MappingFragment StoreEntitySet="juniorDoctor">
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
           <ScalarProperty Name="full_name" ColumnName="full_name" />
           <ScalarProperty Name="father_name" ColumnName="father_name" />
@@ -79,10 +80,10 @@
     <EntitySetMapping Name="visits">
       <EntityTypeMapping TypeName="virtualClinicModel.visit">
         <MappingFragment StoreEntitySet="visits">
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
           <ScalarProperty Name="visit_id" ColumnName="visit_id" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="time" ColumnName="time" />
         </MappingFragment>
