@@ -52,11 +52,11 @@ namespace fyp.Controllers
         public HttpResponseMessage Jrlogin(string email, string password)
         {
             juniorDoctor jr = new juniorDoctor();
-            var user = db.juniorDoctors.Where(u => u.email == email && u.password == password).FirstOrDefault();
-            user.status= 1;
-            if (user!=null)
+            var user1 = db.juniorDoctors.Where(u => u.email == email && u.password == password).FirstOrDefault();
+            if (user1!=null)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, "jrdoc");
+                user1.status = 1;
+                return Request.CreateResponse(HttpStatusCode.OK,user1);
             }
             else
             {

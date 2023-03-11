@@ -18,11 +18,11 @@ namespace fyp.Controllers
         [HttpPost]
         public HttpResponseMessage Nurselogin(string email, string password)
         {
-
-            var user = db.nurses.Where(u => u.email == email && u.password == password);
-            if (user.Count() > 0)
+            nurse nr = new nurse();
+            var user2 = db.nurses.Where(u => u.email == email && u.password == password).FirstOrDefault();
+            if (user2!=null)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, "true");
+                return Request.CreateResponse(HttpStatusCode.OK,user2);
             }
             else
             {
