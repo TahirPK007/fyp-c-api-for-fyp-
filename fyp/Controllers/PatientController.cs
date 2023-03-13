@@ -18,21 +18,21 @@ namespace fyp.Controllers
         {
             try
             {
-                    patient p = new patient();
-                    var d = DateTime.Now;
-                    p.cnic = pat.cnic;
-                    p.full_name = pat.full_name;
-                    p.relation = pat.relation;
-                    p.relative_name = pat.relative_name;
-                    p.dob = pat.dob;
-                    p.gender = pat.gender;
-                    p.date = d.ToShortDateString();
-                    p.time = d.ToShortTimeString();
-                    db.patients.Add(p);
-                    db.SaveChanges();
-                    patient get_id = db.patients.OrderByDescending(s => s.patient_id).FirstOrDefault();
-                    int id = get_id.patient_id;
-                    return Request.CreateResponse(HttpStatusCode.OK, id);
+                patient p = new patient();
+                var d = DateTime.Now;
+                p.cnic = pat.cnic;
+                p.full_name = pat.full_name;
+                p.relation = pat.relation;
+                p.relative_name = pat.relative_name;
+                p.dob = pat.dob;
+                p.gender = pat.gender;
+                p.date = d.ToShortDateString();
+                p.time = d.ToShortTimeString();
+                db.patients.Add(p);
+                db.SaveChanges();
+                patient get_id = db.patients.OrderByDescending(s => s.patient_id).FirstOrDefault();
+                int id = get_id.patient_id;
+                return Request.CreateResponse(HttpStatusCode.OK, id);
             }
             catch (Exception ex)
             {
@@ -53,18 +53,19 @@ namespace fyp.Controllers
             }
         }
         [HttpPost]
-        public HttpResponseMessage Visits(int patient_id,int status)
+        public HttpResponseMessage Visits(int patient_id, int status)
         {
-            try { 
-            visit v = new visit();
-            var d = DateTime.Now;
-            v.patient_id= patient_id;
-            v.status=status;
-            v.date = d.ToShortDateString();
-            v.time = d.ToLongTimeString();
+            try
+            {
+                visit v = new visit();
+                var d = DateTime.Now;
+                v.patient_id = patient_id;
+                v.status = status;
+                v.date = d.ToShortDateString();
+                v.time = d.ToLongTimeString();
                 db.visits.Add(v);
                 db.SaveChanges();
-            return Request.CreateResponse(HttpStatusCode.OK, "New visit added");
+                return Request.CreateResponse(HttpStatusCode.OK, "New visit added");
             }
             catch (Exception ex)
             {
@@ -72,19 +73,19 @@ namespace fyp.Controllers
             }
         }
         [HttpPost]
-        public HttpResponseMessage Updatepatdetails(patient patt,int patient_id,int newcnic)
+        public HttpResponseMessage Updatepatdetails(patient patt, int patient_id, int newcnic)
         {
             try
             {
-                var patienttoupdate=db.patients.Where(p=>p.patient_id==patient_id).FirstOrDefault();
+                var patienttoupdate = db.patients.Where(p => p.patient_id == patient_id).FirstOrDefault();
                 var d = DateTime.Now;
-                patienttoupdate.cnic=newcnic;
-                patienttoupdate.full_name=patt.full_name;
-                patienttoupdate.relation= patt.relation;
-                patienttoupdate.relative_name= patt.relative_name;
-                patienttoupdate.dob= patt.dob;
-                patienttoupdate.gender= patt.gender;
-                patienttoupdate.date=d.ToShortDateString();
+                patienttoupdate.cnic = newcnic;
+                patienttoupdate.full_name = patt.full_name;
+                patienttoupdate.relation = patt.relation;
+                patienttoupdate.relative_name = patt.relative_name;
+                patienttoupdate.dob = patt.dob;
+                patienttoupdate.gender = patt.gender;
+                patienttoupdate.date = d.ToShortDateString();
                 patienttoupdate.time = d.ToShortTimeString();
                 db.patients.AddOrUpdate(patienttoupdate);
                 db.SaveChanges();

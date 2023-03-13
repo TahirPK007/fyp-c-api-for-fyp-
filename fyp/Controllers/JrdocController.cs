@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,11 +18,11 @@ namespace fyp.Controllers
             try
             {
                 var email = db.juniorDoctors.Where(j => j.email == jr.email).FirstOrDefault();
-                if(email==null)
-                { 
-                db.juniorDoctors.Add(jr);
-                db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, "true");
+                if (email == null)
+                {
+                    db.juniorDoctors.Add(jr);
+                    db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, "true");
                 }
                 else
                 {
@@ -51,18 +52,44 @@ namespace fyp.Controllers
         [HttpPost]
         public HttpResponseMessage Jrlogin(string email, string password)
         {
-            juniorDoctor jr = new juniorDoctor();
-            var user1 = db.juniorDoctors.Where(u => u.email == email && u.password == password).FirstOrDefault();
-            if (user1!=null)
+            try
             {
-                user1.status = 1;
-                return Request.CreateResponse(HttpStatusCode.OK,user1);
+                var user1 = db.juniorDoctors.Where(u => u.email == email && u.password == password).FirstOrDefault();
+                if (user1 != null)
+                {
+                    user1.status = 1;
+                    db.juniorDoctors.AddOrUpdate(user1);
+                    db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, user1);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "user doesnt exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+        [HttpPost]
+        public HttpResponseMessage Jrlogout(int jrdocid)
+        {
+            juniorDoctor jr = new juniorDoctor();
+            var logout = db.juniorDoctors.Where(u => u.jrdoc_id == jrdocid).FirstOrDefault();
+            if (logout != null)
+            {
+                logout.status = 0;
+                db.juniorDoctors.AddOrUpdate(logout);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "logged_out");
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, "user doesnt exist");
+                return Request.CreateResponse(HttpStatusCode.NotFound, "error occured while logging out");
             }
         }
+
         [HttpPost]
         public HttpResponseMessage Acceptcase(acceptCase acp)
         {
