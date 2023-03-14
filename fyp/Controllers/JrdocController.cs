@@ -34,14 +34,19 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
+
+
+
         [HttpGet]
         public HttpResponseMessage MyNewCases(int id)
         {
             try
             {
-                var visits = db.visits.Where(v => v.status == 1 && v.jrdoc_id == id);
-
-                return Request.CreateResponse(HttpStatusCode.OK, visits);
+                var visits1 = db.visits.Where(v => v.status == 1 && v.jrdoc_id == id && v.status==1).FirstOrDefault();
+                var jrdocid = visits1.jrdoc_id;
+                var record = (from x in db.visits where x.jrdoc_id == jrdocid join p in db.patients on x.patient_id equals p.patient_id join vv in db.vitals on p.patient_id equals vv.patient_id select new { p, vv }).FirstOrDefault();
+                return Request.CreateResponse(HttpStatusCode.OK, record);
 
             }
             catch (Exception ex)

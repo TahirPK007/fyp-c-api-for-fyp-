@@ -20,5 +20,6 @@ namespace fyp.Models
         public Nullable<int> status { get; set; }
         public string date { get; set; }
         public string time { get; set; }
+        public Nullable<System.DateTime> AssignedDatetime { get; set; }
     }
 }

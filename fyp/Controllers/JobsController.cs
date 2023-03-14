@@ -16,6 +16,19 @@ namespace fyp.Controllers
         [HttpGet]
         public HttpResponseMessage AssignPatientToDoctor()
         {
+            //check for the already recommended and still pending visits.
+            var pending = db.visits.Where(v => v.status == 1);
+            foreach (var visit in pending)
+            {
+                var timeDiff = DateTime.Now.Subtract(visit.AssignedDatetime.Value);
+                if (timeDiff.TotalSeconds >= 30)
+                {
+                    visit.status = 0;
+                    //visit.jrdoc_id = null;
+                }
+            }
+
+
 
             //get new vistis
             var newVisits = db.visits.Where(d => d.status == 0);
@@ -38,10 +51,16 @@ namespace fyp.Controllers
             foreach (var visit in newVisits)
             {
                 var doctor = availableDoctors.FirstOrDefault();
+                if (visit.jrdoc_id != null)
+                {
+                    doctor = availableDoctors.FirstOrDefault(d=>d.jrdoc_id!=visit.jrdoc_id);
+                }
+
                 if (doctor != null)
                 {
                     visit.jrdoc_id = doctor.jrdoc_id;
-                    visit.status = 1;
+                    visit.status = 1;//recommended to doctor.
+                    visit.AssignedDatetime = DateTime.Now;
                     availableDoctors.Remove(doctor);
                 }
             }

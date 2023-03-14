@@ -80,6 +80,7 @@
     <Property Name="status" Type="int" />
     <Property Name="date" Type="varchar" MaxLength="50" />
     <Property Name="time" Type="varchar" MaxLength="50" />
+    <Property Name="AssignedDatetime" Type="datetime" />
   </EntityType>
   <EntityType Name="vitals">
     <Key>
