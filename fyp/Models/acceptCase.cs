@@ -12,14 +12,12 @@ namespace fyp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class acceptCase
+    public partial class acceptcase
     {
-        public int acceptCaseID { get; set; }
+        public int acceptcase_id { get; set; }
         public Nullable<int> patient_id { get; set; }
         public Nullable<int> jrdoc_id { get; set; }
         public string time { get; set; }
-    
-        public virtual juniorDoctor juniorDoctor { get; set; }
-        public virtual patient patient { get; set; }
+        public Nullable<int> visit_id { get; set; }
     }
 }

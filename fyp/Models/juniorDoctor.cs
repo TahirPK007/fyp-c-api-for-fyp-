@@ -17,7 +17,6 @@ namespace fyp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public juniorDoctor()
         {
-            this.acceptCases = new HashSet<acceptCase>();
             this.histories = new HashSet<history>();
         }
     
@@ -32,8 +31,6 @@ namespace fyp.Models
         public string role { get; set; }
         public Nullable<int> status { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<acceptCase> acceptCases { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<history> histories { get; set; }
     }

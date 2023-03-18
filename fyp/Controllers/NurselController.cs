@@ -13,7 +13,7 @@ namespace fyp.Controllers
 {
     public class NurselController : ApiController
     {
-        virtualClinicEntities5 db = new virtualClinicEntities5();
+        virtualClinicEntities8 db = new virtualClinicEntities8();
 
         [HttpPost]
         public HttpResponseMessage Nurselogin(string email, string password)
@@ -36,11 +36,12 @@ namespace fyp.Controllers
             {
 
                 HttpRequest request = HttpContext.Current.Request;
+
                 var image = request.Files["image"];
                 if (image != null)
                 {
                     string extension = image.FileName.Split('.')[1];
-                    string filename = image.FileName;
+                    string filename = (request["patient_id"]);
                     image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
                     vital vit = new vital();
 

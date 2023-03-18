@@ -11,7 +11,7 @@ namespace fyp.Controllers
 {
     public class JobsController : ApiController
     {
-        virtualClinicEntities5 db = new virtualClinicEntities5();
+        virtualClinicEntities8 db = new virtualClinicEntities8();
 
         [HttpGet]
         public HttpResponseMessage AssignPatientToDoctor()
@@ -53,7 +53,7 @@ namespace fyp.Controllers
                 var doctor = availableDoctors.FirstOrDefault();
                 if (visit.jrdoc_id != null)
                 {
-                    doctor = availableDoctors.FirstOrDefault(d=>d.jrdoc_id!=visit.jrdoc_id);
+                    doctor = availableDoctors.FirstOrDefault(d => d.jrdoc_id != visit.jrdoc_id);
                 }
 
                 if (doctor != null)
@@ -67,22 +67,22 @@ namespace fyp.Controllers
             db.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-        [HttpGet]
-        public HttpResponseMessage FetchPatentWithVitals()
-        {
-            try
-            {
-                visit vit = new visit();
-                juniorDoctor dr = new juniorDoctor();
-                patient pr = new patient();
-                var newvits = db.visits.Where(v => v.jrdoc_id == dr.jrdoc_id).FirstOrDefault();
-                var record = (from v in db.visits join p in db.patients on v.patient_id equals p.patient_id join vv in db.vitals on p.patient_id equals vv.patient_id where v.patient_id == newvits.patient_id select new { p, v }).ToList();
-                return Request.CreateResponse(HttpStatusCode.OK, record);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
+        //[HttpGet]
+        //public HttpResponseMessage FetchPatentWithVitals()
+        //{
+        //    try
+        //    {
+        //        visit vit = new visit();
+        //        juniorDoctor dr = new juniorDoctor();
+        //        patient pr = new patient();
+        //        var newvits = db.visits.Where(v => v.jrdoc_id == dr.jrdoc_id).FirstOrDefault();
+        //        var record = (from v in db.visits join p in db.patients on v.patient_id equals p.patient_id join vv in db.vitals on p.patient_id equals vv.patient_id where v.patient_id == newvits.patient_id select new { p, v }).ToList();
+        //        return Request.CreateResponse(HttpStatusCode.OK, record);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+        //    }
+        //}
     }
 }

@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="virtualClinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="acceptCase">
-    <Key>
-      <PropertyRef Name="acceptCaseID" />
-    </Key>
-    <Property Name="acceptCaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="patient_id" Type="Int32" />
-    <Property Name="jrdoc_id" Type="Int32" />
-    <Property Name="time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="juniorDoctor" Relationship="Self.FK__acceptCase__did__52593CB8" FromRole="acceptCase" ToRole="juniorDoctor" />
-    <NavigationProperty Name="patient" Relationship="Self.FK__acceptCase__pid__5165187F" FromRole="acceptCase" ToRole="patient" />
-  </EntityType>
   <EntityType Name="history">
     <Key>
       <PropertyRef Name="historyID" />
@@ -38,9 +27,8 @@
     <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="gender" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="acceptCases" Relationship="Self.FK__acceptCase__did__52593CB8" FromRole="juniorDoctor" ToRole="acceptCase" />
-    <NavigationProperty Name="histories" Relationship="Self.FK__history__did__5629CD9C" FromRole="juniorDoctor" ToRole="history" />
     <Property Name="status" Type="Int32" />
+    <NavigationProperty Name="histories" Relationship="Self.FK__history__did__5629CD9C" FromRole="juniorDoctor" ToRole="history" />
   </EntityType>
   <EntityType Name="nurse">
     <Key>
@@ -65,7 +53,6 @@
     <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="acceptCases" Relationship="Self.FK__acceptCase__pid__5165187F" FromRole="patient" ToRole="acceptCase" />
     <NavigationProperty Name="histories" Relationship="Self.FK__history__pid__5535A963" FromRole="patient" ToRole="history" />
   </EntityType>
   <EntityType Name="seniorDoctor">
@@ -102,30 +89,6 @@
     <Property Name="symptoms" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
-  <Association Name="FK__acceptCase__did__52593CB8">
-    <End Role="juniorDoctor" Type="Self.juniorDoctor" Multiplicity="0..1" />
-    <End Role="acceptCase" Type="Self.acceptCase" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="juniorDoctor">
-        <PropertyRef Name="jrdoc_id" />
-      </Principal>
-      <Dependent Role="acceptCase">
-        <PropertyRef Name="jrdoc_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__acceptCase__pid__5165187F">
-    <End Role="patient" Type="Self.patient" Multiplicity="0..1" />
-    <End Role="acceptCase" Type="Self.acceptCase" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="patient">
-        <PropertyRef Name="patient_id" />
-      </Principal>
-      <Dependent Role="acceptCase">
-        <PropertyRef Name="patient_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__history__did__5629CD9C">
     <End Role="juniorDoctor" Type="Self.juniorDoctor" Multiplicity="0..1" />
     <End Role="history" Type="Self.history" Multiplicity="*" />
@@ -150,8 +113,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="virtualClinicEntities5" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="acceptCases" EntityType="Self.acceptCase" />
+  <EntityContainer Name="virtualClinicEntities8" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="histories" EntityType="Self.history" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
     <EntitySet Name="nurses" EntityType="Self.nurse" />
@@ -159,14 +121,6 @@
     <EntitySet Name="seniorDoctors" EntityType="Self.seniorDoctor" />
     <EntitySet Name="visits" EntityType="Self.visit" />
     <EntitySet Name="vitals" EntityType="Self.vital" />
-    <AssociationSet Name="FK__acceptCase__did__52593CB8" Association="Self.FK__acceptCase__did__52593CB8">
-      <End Role="juniorDoctor" EntitySet="juniorDoctors" />
-      <End Role="acceptCase" EntitySet="acceptCases" />
-    </AssociationSet>
-    <AssociationSet Name="FK__acceptCase__pid__5165187F" Association="Self.FK__acceptCase__pid__5165187F">
-      <End Role="patient" EntitySet="patients" />
-      <End Role="acceptCase" EntitySet="acceptCases" />
-    </AssociationSet>
     <AssociationSet Name="FK__history__did__5629CD9C" Association="Self.FK__history__did__5629CD9C">
       <End Role="juniorDoctor" EntitySet="juniorDoctors" />
       <End Role="history" EntitySet="histories" />
@@ -175,5 +129,16 @@
       <End Role="patient" EntitySet="patients" />
       <End Role="history" EntitySet="histories" />
     </AssociationSet>
+    <EntitySet Name="acceptcases" EntityType="virtualClinicModel.acceptcase" />
   </EntityContainer>
+  <EntityType Name="acceptcase">
+    <Key>
+      <PropertyRef Name="acceptcase_id" />
+    </Key>
+    <Property Name="acceptcase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="patient_id" Type="Int32" />
+    <Property Name="jrdoc_id" Type="Int32" />
+    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="visit_id" Type="Int32" />
+  </EntityType>
 </Schema>

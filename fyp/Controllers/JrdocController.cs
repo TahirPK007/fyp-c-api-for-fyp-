@@ -11,7 +11,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities5 db = new virtualClinicEntities5();
+        virtualClinicEntities8 db = new virtualClinicEntities8  ();
         [HttpPost]
         public HttpResponseMessage Jrsignup(juniorDoctor jr)
         {
@@ -43,9 +43,9 @@ namespace fyp.Controllers
         {
             try
             {
-                var visits1 = db.visits.Where(v => v.status == 1 && v.jrdoc_id == id && v.status==1).FirstOrDefault();
+                var visits1 = db.visits.Where(v => v.status == 1 && v.jrdoc_id == id).FirstOrDefault();
                 var jrdocid = visits1.jrdoc_id;
-                var record = (from x in db.visits where x.jrdoc_id == jrdocid join p in db.patients on x.patient_id equals p.patient_id join vv in db.vitals on p.patient_id equals vv.patient_id select new { p, vv }).FirstOrDefault();
+                var record = (from x in db.visits where x.jrdoc_id == jrdocid join p in db.patients on x.patient_id equals p.patient_id join vv in db.vitals on p.patient_id equals vv.patient_id select new { p, vv, x }).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, record);
 
             }
@@ -96,11 +96,20 @@ namespace fyp.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage Acceptcase(acceptCase acp)
+        public HttpResponseMessage AcceptedCase(int jrdocid, int patid, int visitid)
         {
             try
             {
-                db.acceptCases.Add(acp);
+                acceptcase acp = new acceptcase();
+                var visittoupdate = db.visits.Where(v => v.status == 1 && v.jrdoc_id == jrdocid).FirstOrDefault();
+                var acceptedtime = DateTime.Now.Subtract(visittoupdate.AssignedDatetime.Value);
+                acp.patient_id = patid;
+                acp.jrdoc_id = jrdocid;
+                acp.visit_id = visitid;
+                acp.time = acceptedtime.ToString();
+                visittoupdate.status = 2;
+                db.acceptcases.Add(acp);
+                db.visits.AddOrUpdate(visittoupdate);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "data added in accept table");
             }
@@ -130,6 +139,7 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
 
     }
 }

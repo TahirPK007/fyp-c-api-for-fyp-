@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities5">
-    <EntitySetMapping Name="acceptCases">
-      <EntityTypeMapping TypeName="virtualClinicModel.acceptCase">
-        <MappingFragment StoreEntitySet="acceptCase">
-          <ScalarProperty Name="acceptCaseID" ColumnName="acceptCaseID" />
-          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
-          <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
-          <ScalarProperty Name="time" ColumnName="time" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities8">
     <EntitySetMapping Name="histories">
       <EntityTypeMapping TypeName="virtualClinicModel.history">
         <MappingFragment StoreEntitySet="history">
@@ -27,7 +17,6 @@
     <EntitySetMapping Name="juniorDoctors">
       <EntityTypeMapping TypeName="virtualClinicModel.juniorDoctor">
         <MappingFragment StoreEntitySet="juniorDoctor">
-          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
           <ScalarProperty Name="full_name" ColumnName="full_name" />
           <ScalarProperty Name="father_name" ColumnName="father_name" />
@@ -37,6 +26,7 @@
           <ScalarProperty Name="contact" ColumnName="contact" />
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="status" ColumnName="status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -80,13 +70,13 @@
     <EntitySetMapping Name="visits">
       <EntityTypeMapping TypeName="virtualClinicModel.visit">
         <MappingFragment StoreEntitySet="visits">
-          <ScalarProperty Name="AssignedDatetime" ColumnName="AssignedDatetime" />
           <ScalarProperty Name="visit_id" ColumnName="visit_id" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
           <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="AssignedDatetime" ColumnName="AssignedDatetime" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -100,6 +90,17 @@
           <ScalarProperty Name="temperature" ColumnName="temperature" />
           <ScalarProperty Name="symptoms" ColumnName="symptoms" />
           <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="acceptcases">
+      <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
+        <MappingFragment StoreEntitySet="acceptcase">
+          <ScalarProperty Name="visit_id" ColumnName="visit_id" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="acceptcase_id" ColumnName="acceptcase_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

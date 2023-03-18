@@ -17,7 +17,6 @@ namespace fyp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public patient()
         {
-            this.acceptCases = new HashSet<acceptCase>();
             this.histories = new HashSet<history>();
         }
     
@@ -31,8 +30,6 @@ namespace fyp.Models
         public string date { get; set; }
         public string time { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<acceptCase> acceptCases { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<history> histories { get; set; }
     }
