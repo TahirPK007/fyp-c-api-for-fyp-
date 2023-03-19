@@ -80,7 +80,6 @@ namespace fyp.Controllers
         [HttpPost]
         public HttpResponseMessage Jrlogout(int jrdocid)
         {
-            juniorDoctor jr = new juniorDoctor();
             var logout = db.juniorDoctors.Where(u => u.jrdoc_id == jrdocid).FirstOrDefault();
             if (logout != null)
             {
