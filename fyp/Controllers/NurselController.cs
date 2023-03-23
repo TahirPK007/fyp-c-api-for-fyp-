@@ -49,7 +49,7 @@ namespace fyp.Controllers
                     vit.blood_pressure = (request["blood_pressure"]);
                     vit.sugar = (request["sugar"]);
                     vit.temperature = (request["temperature"]);
-                    vit.symptoms = (request["symptoms"]);
+                    vit.symptoms = (request["symptoms"].ToString());
                     vit.image = filename;
                     db.vitals.Add(vit);
                     db.SaveChanges();
@@ -62,7 +62,7 @@ namespace fyp.Controllers
                     vit.blood_pressure = (request["blood_pressure"]);
                     vit.sugar = (request["sugar"]);
                     vit.temperature = (request["temperature"]);
-                    vit.symptoms = (request["symptoms"]);
+                    vit.symptoms = (request["symptoms"].ToString());
                     vit.image = "";
                     db.vitals.Add(vit);
                     db.SaveChanges();
