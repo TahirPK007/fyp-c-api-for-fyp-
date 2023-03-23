@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities8">
+  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities9">
+    <EntitySetMapping Name="acceptcases">
+      <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
+        <MappingFragment StoreEntitySet="acceptcase">
+          <ScalarProperty Name="acceptcase_id" ColumnName="acceptcase_id" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="visit_id" ColumnName="visit_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="histories">
       <EntityTypeMapping TypeName="virtualClinicModel.history">
         <MappingFragment StoreEntitySet="history">
@@ -90,17 +101,6 @@
           <ScalarProperty Name="temperature" ColumnName="temperature" />
           <ScalarProperty Name="symptoms" ColumnName="symptoms" />
           <ScalarProperty Name="image" ColumnName="image" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="acceptcases">
-      <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
-        <MappingFragment StoreEntitySet="acceptcase">
-          <ScalarProperty Name="visit_id" ColumnName="visit_id" />
-          <ScalarProperty Name="time" ColumnName="time" />
-          <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
-          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
-          <ScalarProperty Name="acceptcase_id" ColumnName="acceptcase_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

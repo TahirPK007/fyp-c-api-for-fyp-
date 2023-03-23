@@ -11,7 +11,7 @@ namespace fyp.Controllers
 {
     public class JobsController : ApiController
     {
-        virtualClinicEntities8 db = new virtualClinicEntities8();
+        virtualClinicEntities9 db = new virtualClinicEntities9();
 
         [HttpGet]
         public HttpResponseMessage AssignPatientToDoctor()
@@ -27,8 +27,6 @@ namespace fyp.Controllers
                     //visit.jrdoc_id = null;
                 }
             }
-
-
 
             //get new vistis
             var newVisits = db.visits.Where(d => d.status == 0);

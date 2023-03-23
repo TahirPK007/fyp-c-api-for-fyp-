@@ -13,10 +13,10 @@ namespace fyp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class virtualClinicEntities8 : DbContext
+    public partial class virtualClinicEntities9 : DbContext
     {
-        public virtualClinicEntities8()
-            : base("name=virtualClinicEntities8")
+        public virtualClinicEntities9()
+            : base("name=virtualClinicEntities9")
         {
         }
     
@@ -25,6 +25,7 @@ namespace fyp.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<acceptcase> acceptcases { get; set; }
         public virtual DbSet<history> histories { get; set; }
         public virtual DbSet<juniorDoctor> juniorDoctors { get; set; }
         public virtual DbSet<nurse> nurses { get; set; }
@@ -32,6 +33,5 @@ namespace fyp.Models
         public virtual DbSet<seniorDoctor> seniorDoctors { get; set; }
         public virtual DbSet<visit> visits { get; set; }
         public virtual DbSet<vital> vitals { get; set; }
-        public virtual DbSet<acceptcase> acceptcases { get; set; }
     }
 }

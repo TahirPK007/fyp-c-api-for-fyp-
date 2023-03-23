@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="virtualClinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="acceptcase">
+    <Key>
+      <PropertyRef Name="acceptcase_id" />
+    </Key>
+    <Property Name="acceptcase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="patient_id" Type="Int32" />
+    <Property Name="jrdoc_id" Type="Int32" />
+    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="visit_id" Type="Int32" />
+  </EntityType>
   <EntityType Name="history">
     <Key>
       <PropertyRef Name="historyID" />
@@ -113,7 +123,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="virtualClinicEntities8" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities9" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
     <EntitySet Name="histories" EntityType="Self.history" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
     <EntitySet Name="nurses" EntityType="Self.nurse" />
@@ -129,16 +140,5 @@
       <End Role="patient" EntitySet="patients" />
       <End Role="history" EntitySet="histories" />
     </AssociationSet>
-    <EntitySet Name="acceptcases" EntityType="virtualClinicModel.acceptcase" />
   </EntityContainer>
-  <EntityType Name="acceptcase">
-    <Key>
-      <PropertyRef Name="acceptcase_id" />
-    </Key>
-    <Property Name="acceptcase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="patient_id" Type="Int32" />
-    <Property Name="jrdoc_id" Type="Int32" />
-    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="visit_id" Type="Int32" />
-  </EntityType>
 </Schema>
