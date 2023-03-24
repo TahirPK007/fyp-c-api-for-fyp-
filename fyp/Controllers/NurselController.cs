@@ -41,7 +41,7 @@ namespace fyp.Controllers
                 if (image != null)
                 {
                     string extension = image.FileName.Split('.')[1];
-                    string filename = (request["patient_id"]);
+                    string filename = (request["patient_id"]+"."+extension);
                     image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
                     vital vit = new vital();
 

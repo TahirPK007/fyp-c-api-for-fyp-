@@ -21,7 +21,7 @@ namespace fyp.Controllers
             foreach (var visit in pending)
             {
                 var timeDiff = DateTime.Now.Subtract(visit.AssignedDatetime.Value);
-                if (timeDiff.TotalSeconds >= 30)
+                if (timeDiff.TotalSeconds >= 120)
                 {
                     visit.status = 0;
                     //visit.jrdoc_id = null;
