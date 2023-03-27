@@ -12,17 +12,15 @@
   </EntityType>
   <EntityType Name="history">
     <Key>
-      <PropertyRef Name="historyID" />
+      <PropertyRef Name="history_id" />
     </Key>
-    <Property Name="historyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="history_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="patient_id" Type="Int32" />
     <Property Name="jrdoc_id" Type="Int32" />
-    <Property Name="prescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="prescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="rating" Type="Int32" />
     <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="juniorDoctor" Relationship="Self.FK__history__did__5629CD9C" FromRole="history" ToRole="juniorDoctor" />
-    <NavigationProperty Name="patient" Relationship="Self.FK__history__pid__5535A963" FromRole="history" ToRole="patient" />
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>
@@ -38,7 +36,6 @@
     <Property Name="gender" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
-    <NavigationProperty Name="histories" Relationship="Self.FK__history__did__5629CD9C" FromRole="juniorDoctor" ToRole="history" />
   </EntityType>
   <EntityType Name="nurse">
     <Key>
@@ -63,7 +60,6 @@
     <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="histories" Relationship="Self.FK__history__pid__5535A963" FromRole="patient" ToRole="history" />
   </EntityType>
   <EntityType Name="seniorDoctor">
     <Key>
@@ -89,41 +85,18 @@
   </EntityType>
   <EntityType Name="vital">
     <Key>
-      <PropertyRef Name="vitalID" />
+      <PropertyRef Name="vital_id" />
     </Key>
-    <Property Name="vitalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vital_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="patient_id" Type="Int32" />
-    <Property Name="blood_pressure" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="blood_pressure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="sugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="temperature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="symptoms" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
   </EntityType>
-  <Association Name="FK__history__did__5629CD9C">
-    <End Role="juniorDoctor" Type="Self.juniorDoctor" Multiplicity="0..1" />
-    <End Role="history" Type="Self.history" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="juniorDoctor">
-        <PropertyRef Name="jrdoc_id" />
-      </Principal>
-      <Dependent Role="history">
-        <PropertyRef Name="jrdoc_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__history__pid__5535A963">
-    <End Role="patient" Type="Self.patient" Multiplicity="0..1" />
-    <End Role="history" Type="Self.history" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="patient">
-        <PropertyRef Name="patient_id" />
-      </Principal>
-      <Dependent Role="history">
-        <PropertyRef Name="patient_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="virtualClinicEntities9" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities11" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
     <EntitySet Name="histories" EntityType="Self.history" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
@@ -132,13 +105,5 @@
     <EntitySet Name="seniorDoctors" EntityType="Self.seniorDoctor" />
     <EntitySet Name="visits" EntityType="Self.visit" />
     <EntitySet Name="vitals" EntityType="Self.vital" />
-    <AssociationSet Name="FK__history__did__5629CD9C" Association="Self.FK__history__did__5629CD9C">
-      <End Role="juniorDoctor" EntitySet="juniorDoctors" />
-      <End Role="history" EntitySet="histories" />
-    </AssociationSet>
-    <AssociationSet Name="FK__history__pid__5535A963" Association="Self.FK__history__pid__5535A963">
-      <End Role="patient" EntitySet="patients" />
-      <End Role="history" EntitySet="histories" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>

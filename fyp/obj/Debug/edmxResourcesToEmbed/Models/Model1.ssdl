@@ -12,12 +12,12 @@
   </EntityType>
   <EntityType Name="history">
     <Key>
-      <PropertyRef Name="historyID" />
+      <PropertyRef Name="history_id" />
     </Key>
-    <Property Name="historyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="history_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="patient_id" Type="int" />
     <Property Name="jrdoc_id" Type="int" />
-    <Property Name="prescription" Type="varchar" MaxLength="200" />
+    <Property Name="prescription" Type="varchar" MaxLength="50" />
     <Property Name="rating" Type="int" />
     <Property Name="date" Type="varchar" MaxLength="50" />
     <Property Name="time" Type="varchar" MaxLength="50" />
@@ -85,40 +85,17 @@
   </EntityType>
   <EntityType Name="vitals">
     <Key>
-      <PropertyRef Name="vitalID" />
+      <PropertyRef Name="vital_id" />
     </Key>
-    <Property Name="vitalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vital_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="patient_id" Type="int" />
-    <Property Name="blood_pressure" Type="varchar" MaxLength="40" />
+    <Property Name="blood_pressure" Type="varchar" MaxLength="50" />
     <Property Name="sugar" Type="varchar" MaxLength="50" />
     <Property Name="temperature" Type="varchar" MaxLength="50" />
     <Property Name="symptoms" Type="varchar" MaxLength="100" />
-    <Property Name="image" Type="varchar(max)" />
+    <Property Name="image" Type="varchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
   </EntityType>
-  <Association Name="FK__history__did__5629CD9C">
-    <End Role="juniorDoctor" Type="Self.juniorDoctor" Multiplicity="0..1" />
-    <End Role="history" Type="Self.history" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="juniorDoctor">
-        <PropertyRef Name="jrdoc_id" />
-      </Principal>
-      <Dependent Role="history">
-        <PropertyRef Name="jrdoc_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__history__pid__5535A963">
-    <End Role="patient" Type="Self.patient" Multiplicity="0..1" />
-    <End Role="history" Type="Self.history" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="patient">
-        <PropertyRef Name="patient_id" />
-      </Principal>
-      <Dependent Role="history">
-        <PropertyRef Name="patient_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="virtualClinicModelStoreContainer">
     <EntitySet Name="acceptcase" EntityType="Self.acceptcase" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="history" EntityType="Self.history" Schema="dbo" store:Type="Tables" />
@@ -128,13 +105,5 @@
     <EntitySet Name="seniorDoctor" EntityType="Self.seniorDoctor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="visits" EntityType="Self.visits" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vitals" EntityType="Self.vitals" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__history__did__5629CD9C" Association="Self.FK__history__did__5629CD9C">
-      <End Role="juniorDoctor" EntitySet="juniorDoctor" />
-      <End Role="history" EntitySet="history" />
-    </AssociationSet>
-    <AssociationSet Name="FK__history__pid__5535A963" Association="Self.FK__history__pid__5535A963">
-      <End Role="patient" EntitySet="patient" />
-      <End Role="history" EntitySet="history" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>

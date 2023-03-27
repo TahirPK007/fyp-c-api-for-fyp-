@@ -14,12 +14,6 @@ namespace fyp.Models
     
     public partial class patient
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public patient()
-        {
-            this.histories = new HashSet<history>();
-        }
-    
         public int patient_id { get; set; }
         public Nullable<int> cnic { get; set; }
         public string full_name { get; set; }
@@ -29,8 +23,5 @@ namespace fyp.Models
         public string gender { get; set; }
         public string date { get; set; }
         public string time { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<history> histories { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities9 db = new virtualClinicEntities9();
+        virtualClinicEntities11 db = new virtualClinicEntities11();
         [HttpPost]
         public HttpResponseMessage Jrsignup(juniorDoctor jr)
         {
@@ -35,17 +35,22 @@ namespace fyp.Controllers
             }
         }
 
-
-
-
         [HttpGet]
         public HttpResponseMessage MyNewCases(int id)
         {
             try
             {
+                var d = DateTime.Now;
                 var visits1 = db.visits.Where(v => v.status == 1 && v.jrdoc_id == id).FirstOrDefault();
                 var jrdocid = visits1.jrdoc_id;
-                var record = (from x in db.visits where x.jrdoc_id == jrdocid join p in db.patients on x.patient_id equals p.patient_id join vv in db.vitals on p.patient_id equals vv.patient_id select new { p, vv, x }).ToList();
+                var patid = visits1.patient_id;
+                var record = (from x in db.visits
+                              join p in db.patients on x.patient_id equals p.patient_id
+                              join v in db.vitals on p.patient_id equals v.patient_id
+                              where x.status == 1 && x.jrdoc_id == id
+                              where p.patient_id == patid
+                              where v.patient_id == patid
+                              select new { p, v, x }).FirstOrDefault();
                 return Request.CreateResponse(HttpStatusCode.OK, record);
 
             }

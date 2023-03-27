@@ -14,12 +14,6 @@ namespace fyp.Models
     
     public partial class juniorDoctor
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public juniorDoctor()
-        {
-            this.histories = new HashSet<history>();
-        }
-    
         public int jrdoc_id { get; set; }
         public string full_name { get; set; }
         public string father_name { get; set; }
@@ -30,8 +24,5 @@ namespace fyp.Models
         public string gender { get; set; }
         public string role { get; set; }
         public Nullable<int> status { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<history> histories { get; set; }
     }
 }

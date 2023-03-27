@@ -14,15 +14,12 @@ namespace fyp.Models
     
     public partial class history
     {
-        public int historyID { get; set; }
+        public int history_id { get; set; }
         public Nullable<int> patient_id { get; set; }
         public Nullable<int> jrdoc_id { get; set; }
         public string prescription { get; set; }
         public Nullable<int> rating { get; set; }
         public string date { get; set; }
         public string time { get; set; }
-    
-        public virtual juniorDoctor juniorDoctor { get; set; }
-        public virtual patient patient { get; set; }
     }
 }

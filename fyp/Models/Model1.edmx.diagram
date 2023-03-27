@@ -4,17 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="44f3e71bcd764edab4de65da50e1b0e6" Name="Diagram1">
-        <EntityTypeShape EntityType="virtualClinicModel.acceptcase" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="virtualClinicModel.history" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="virtualClinicModel.juniorDoctor" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="virtualClinicModel.nurse" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="virtualClinicModel.patient" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="virtualClinicModel.seniorDoctor" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="virtualClinicModel.visit" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="virtualClinicModel.vital" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
-        <AssociationConnector Association="virtualClinicModel.FK__history__did__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="virtualClinicModel.FK__history__pid__5535A963" ManuallyRouted="false" />
+      <Diagram DiagramId="5d7d3ca76fcd416f935ee08cb4d64572" Name="Diagram1">
+        <EntityTypeShape EntityType="virtualClinicModel.acceptcase" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtualClinicModel.history" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtualClinicModel.juniorDoctor" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtualClinicModel.nurse" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtualClinicModel.patient" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtualClinicModel.seniorDoctor" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtualClinicModel.visit" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtualClinicModel.vital" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
