@@ -11,7 +11,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities13 db = new virtualClinicEntities13();
+        virtualClinicEntities16 db = new virtualClinicEntities16();
         [HttpPost]
         public HttpResponseMessage Jrsignup(juniorDoctor jr)
         {
@@ -49,8 +49,8 @@ namespace fyp.Controllers
                               join v in db.vitals on p.patient_id equals v.patient_id
                               where x.status == 1 && x.jrdoc_id == id
                               where p.patient_id == patid
-                              where v.patient_id == patid
-                              select new { p, v, x }).FirstOrDefault();
+                              where v.patient_id == patid && v.status == 0
+                              select new { p, v, x }).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, record);
 
             }
@@ -106,11 +106,11 @@ namespace fyp.Controllers
             {
                 acceptcase acp = new acceptcase();
                 var visittoupdate = db.visits.Where(v => v.status == 1 && v.jrdoc_id == jrdocid).FirstOrDefault();
-                var acceptedtime = DateTime.Now.Subtract(visittoupdate.AssignedDatetime.Value);
+                TimeSpan acceptedtime = DateTime.Now.Subtract(visittoupdate.AssignedDatetime.Value);
                 acp.patient_id = patid;
                 acp.jrdoc_id = jrdocid;
                 acp.visit_id = visitid;
-                acp.time = acceptedtime.ToString();
+                acp.time = DateTime.Now.Add(acceptedtime);
                 visittoupdate.status = 2;
                 db.acceptcases.Add(acp);
                 db.visits.AddOrUpdate(visittoupdate);

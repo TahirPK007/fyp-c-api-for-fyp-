@@ -14,7 +14,7 @@ namespace fyp.Controllers
 {
     public class NurselController : ApiController
     {
-        virtualClinicEntities13 db = new virtualClinicEntities13();
+        virtualClinicEntities16 db = new virtualClinicEntities16();
 
         [HttpPost]
         public HttpResponseMessage Nurselogin(string email, string password)
@@ -38,7 +38,7 @@ namespace fyp.Controllers
 
                 HttpRequest request = HttpContext.Current.Request;
                 var image = request.Files["image"];
-                var d = DateTime.Now.ToString();
+
                 if (image != null)
                 {
                     string extension = image.FileName.Split('.')[1];
@@ -51,6 +51,7 @@ namespace fyp.Controllers
                     vit.temperature = (request["temperature"]);
                     vit.symptoms = (request["symptoms"].ToString());
                     vit.image = "http://192.168.0.105/fyp/Content/Uploads/" + filename;
+                    vit.status = 0;
                     db.vitals.Add(vit);
                     db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
@@ -64,6 +65,7 @@ namespace fyp.Controllers
                     vit.temperature = (request["temperature"]);
                     vit.symptoms = (request["symptoms"].ToString());
                     vit.image = null;
+                    vit.status = 0;
                     db.vitals.Add(vit);
                     db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");

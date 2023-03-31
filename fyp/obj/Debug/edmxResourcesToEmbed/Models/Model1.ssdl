@@ -7,7 +7,7 @@
     <Property Name="acceptcase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="patient_id" Type="int" />
     <Property Name="jrdoc_id" Type="int" />
-    <Property Name="time" Type="varchar" MaxLength="50" />
+    <Property Name="time" Type="datetime" />
     <Property Name="visit_id" Type="int" />
   </EntityType>
   <EntityType Name="history">
