@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,7 +14,7 @@ namespace fyp.Controllers
 {
     public class NurselController : ApiController
     {
-        virtualClinicEntities11 db = new virtualClinicEntities11();
+        virtualClinicEntities13 db = new virtualClinicEntities13();
 
         [HttpPost]
         public HttpResponseMessage Nurselogin(string email, string password)
@@ -36,21 +37,20 @@ namespace fyp.Controllers
             {
 
                 HttpRequest request = HttpContext.Current.Request;
-
                 var image = request.Files["image"];
+                var d = DateTime.Now.ToString();
                 if (image != null)
                 {
                     string extension = image.FileName.Split('.')[1];
-                    string filename = (request["patient_id"]+"."+extension);
+                    string filename = image.FileName + "." + extension;
                     image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
                     vital vit = new vital();
-
                     vit.patient_id = int.Parse(request["patient_id"]);
                     vit.blood_pressure = (request["blood_pressure"]);
                     vit.sugar = (request["sugar"]);
                     vit.temperature = (request["temperature"]);
                     vit.symptoms = (request["symptoms"].ToString());
-                    vit.image = filename;
+                    vit.image = "http://192.168.0.105/fyp/Content/Uploads/" + filename;
                     db.vitals.Add(vit);
                     db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
@@ -63,7 +63,7 @@ namespace fyp.Controllers
                     vit.sugar = (request["sugar"]);
                     vit.temperature = (request["temperature"]);
                     vit.symptoms = (request["symptoms"].ToString());
-                    vit.image = "";
+                    vit.image = null;
                     db.vitals.Add(vit);
                     db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
@@ -87,6 +87,14 @@ namespace fyp.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
+        }
+        [HttpGet]
+        public HttpResponseMessage Fetchvits()
+        {
+
+            var data = db.vitals.ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+
         }
     }
 }

@@ -93,7 +93,7 @@
     <Property Name="sugar" Type="varchar" MaxLength="50" />
     <Property Name="temperature" Type="varchar" MaxLength="50" />
     <Property Name="symptoms" Type="varchar" MaxLength="100" />
-    <Property Name="image" Type="varchar" MaxLength="50" />
+    <Property Name="image" Type="varchar(max)" />
     <Property Name="status" Type="int" />
   </EntityType>
   <EntityContainer Name="virtualClinicModelStoreContainer">
