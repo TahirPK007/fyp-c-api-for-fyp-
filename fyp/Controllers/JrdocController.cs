@@ -123,20 +123,20 @@ namespace fyp.Controllers
             }
         }
         [HttpPost]
-        public HttpResponseMessage History(history his)
+        public HttpResponseMessage PrescriptionHistory(int patid, int jrdocid, history hs)
         {
             try
             {
                 history h = new history();
                 var d = DateTime.Now;
-                h.patient_id = his.patient_id;
-                h.jrdoc_id = his.jrdoc_id;
-                h.prescription = his.prescription;
+                h.patient_id = patid;
+                h.jrdoc_id = jrdocid;
+                h.prescription = hs.prescription;
                 h.date = d.ToShortDateString();
                 h.time = d.ToShortTimeString();
                 db.histories.Add(h);
                 db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, "data added in accept table");
+                return Request.CreateResponse(HttpStatusCode.OK, "Data Added In History Table Successfully");
             }
             catch (Exception ex)
             {

@@ -38,7 +38,6 @@ namespace fyp.Controllers
 
                 HttpRequest request = HttpContext.Current.Request;
                 var image = request.Files["image"];
-
                 if (image != null)
                 {
                     string extension = image.FileName.Split('.')[1];
@@ -90,13 +89,14 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-        [HttpGet]
-        public HttpResponseMessage Fetchvits()
-        {
+        //this function was for testing its not being used anymore.
+        //[HttpGet]
+        //public HttpResponseMessage Fetchvits()
+        //{
 
-            var data = db.vitals.ToList();
-            return Request.CreateResponse(HttpStatusCode.OK, data);
+        //    var data = db.vitals.ToList();
+        //    return Request.CreateResponse(HttpStatusCode.OK, data);
 
-        }
+        //}
     }
 }
