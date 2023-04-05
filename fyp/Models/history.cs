@@ -21,5 +21,6 @@ namespace fyp.Models
         public Nullable<int> rating { get; set; }
         public string date { get; set; }
         public string time { get; set; }
+        public Nullable<int> status { get; set; }
     }
 }

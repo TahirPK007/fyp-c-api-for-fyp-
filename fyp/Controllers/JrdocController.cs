@@ -132,6 +132,7 @@ namespace fyp.Controllers
                 h.patient_id = patid;
                 h.jrdoc_id = jrdocid;
                 h.prescription = hs.prescription;
+                h.status = 0;
                 h.date = d.ToShortDateString();
                 h.time = d.ToShortTimeString();
                 db.histories.Add(h);

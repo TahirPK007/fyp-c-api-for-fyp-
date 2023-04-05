@@ -21,6 +21,7 @@
     <Property Name="rating" Type="Int32" />
     <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>
