@@ -24,5 +24,6 @@ namespace fyp.Models
         public string gender { get; set; }
         public string role { get; set; }
         public Nullable<int> status { get; set; }
+        public Nullable<double> rating { get; set; }
     }
 }

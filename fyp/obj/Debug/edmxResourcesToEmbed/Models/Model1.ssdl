@@ -10,15 +10,14 @@
     <Property Name="time" Type="datetime" />
     <Property Name="visit_id" Type="int" />
   </EntityType>
-  <EntityType Name="history">
+  <EntityType Name="appointments">
     <Key>
-      <PropertyRef Name="history_id" />
+      <PropertyRef Name="appointment_id" />
     </Key>
-    <Property Name="history_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="appointment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="patient_id" Type="int" />
     <Property Name="jrdoc_id" Type="int" />
-    <Property Name="prescription" Type="varchar" MaxLength="50" />
-    <Property Name="rating" Type="int" />
+    <Property Name="rating" Type="float" />
     <Property Name="date" Type="varchar" MaxLength="50" />
     <Property Name="time" Type="varchar" MaxLength="50" />
     <Property Name="status" Type="int" />
@@ -37,6 +36,7 @@
     <Property Name="gender" Type="varchar" MaxLength="30" />
     <Property Name="role" Type="varchar" MaxLength="50" />
     <Property Name="status" Type="int" />
+    <Property Name="rating" Type="float" />
   </EntityType>
   <EntityType Name="nurse">
     <Key>
@@ -61,6 +61,16 @@
     <Property Name="gender" Type="varchar" MaxLength="20" />
     <Property Name="date" Type="varchar" MaxLength="50" />
     <Property Name="time" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="prescription">
+    <Key>
+      <PropertyRef Name="prescription_id" />
+    </Key>
+    <Property Name="prescription_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="appointment_id" Type="int" />
+    <Property Name="medicine_name" Type="varchar" MaxLength="50" />
+    <Property Name="duration" Type="varchar" MaxLength="50" />
+    <Property Name="timings" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="seniorDoctor">
     <Key>
@@ -99,10 +109,11 @@
   </EntityType>
   <EntityContainer Name="virtualClinicModelStoreContainer">
     <EntitySet Name="acceptcase" EntityType="Self.acceptcase" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="history" EntityType="Self.history" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="appointments" EntityType="Self.appointments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="juniorDoctor" EntityType="Self.juniorDoctor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="nurse" EntityType="Self.nurse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="prescription" EntityType="Self.prescription" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="seniorDoctor" EntityType="Self.seniorDoctor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="visits" EntityType="Self.visits" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vitals" EntityType="Self.vitals" Schema="dbo" store:Type="Tables" />

@@ -12,13 +12,12 @@ namespace fyp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class history
+    public partial class appointment
     {
-        public int history_id { get; set; }
+        public int appointment_id { get; set; }
         public Nullable<int> patient_id { get; set; }
         public Nullable<int> jrdoc_id { get; set; }
-        public string prescription { get; set; }
-        public Nullable<int> rating { get; set; }
+        public Nullable<double> rating { get; set; }
         public string date { get; set; }
         public string time { get; set; }
         public Nullable<int> status { get; set; }

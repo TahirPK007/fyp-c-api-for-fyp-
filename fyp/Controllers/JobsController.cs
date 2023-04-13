@@ -12,7 +12,7 @@ namespace fyp.Controllers
     public class JobsController : ApiController
     {
 
-        virtualClinicEntities16 db = new virtualClinicEntities16();
+        virtualClinicEntities18 db = new virtualClinicEntities18();
         [HttpGet]
         public HttpResponseMessage AssignPatientToDoctor()
         {
@@ -56,7 +56,7 @@ namespace fyp.Controllers
 
                 if (doctor != null)
                 {
-                    visit.jrdoc_id = doctor.jrdoc_id;
+                    visit.jrdoc_id = doctor.jrdoc_id; 
                     visit.status = 1;//recommended to doctor.
                     visit.AssignedDatetime = DateTime.Now;
                     availableDoctors.Remove(doctor);
@@ -65,24 +65,6 @@ namespace fyp.Controllers
             db.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-        //[HttpGet]
-        //public HttpResponseMessage FetchPatentWithVitals()
-        //{
-        //    try
-        //    {
-        //        visit vit = new visit();
-        //        juniorDoctor dr = new juniorDoctor();
-        //        patient pr = new patient();
-        //        var newvits = db.visits.Where(v => v.jrdoc_id == dr.jrdoc_id).FirstOrDefault();
-        //        var record = (from v in db.visits join p in db.patients on v.patient_id equals p.patient_id join vv in db.vitals on p.patient_id equals vv.patient_id where v.patient_id == newvits.patient_id select new { p, v }).ToList();
-        //        return Request.CreateResponse(HttpStatusCode.OK, record);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-        //    }
-        //}
-
 
     }
 }

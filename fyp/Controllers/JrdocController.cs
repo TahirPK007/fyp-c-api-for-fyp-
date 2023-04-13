@@ -4,6 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using fyp.Models;
 
@@ -11,7 +12,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities16 db = new virtualClinicEntities16();
+        virtualClinicEntities18 db = new virtualClinicEntities18();
         [HttpPost]
         public HttpResponseMessage Jrsignup(juniorDoctor jr)
         {
@@ -40,7 +41,6 @@ namespace fyp.Controllers
         {
             try
             {
-                var d = DateTime.Now;
                 var visits1 = db.visits.Where(v => v.status == 1 && v.jrdoc_id == id).FirstOrDefault();
                 var jrdocid = visits1.jrdoc_id;
                 var patid = visits1.patient_id;
@@ -56,7 +56,7 @@ namespace fyp.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
             }
         }
         [HttpPost]
@@ -123,21 +123,55 @@ namespace fyp.Controllers
             }
         }
         [HttpPost]
-        public HttpResponseMessage PrescriptionHistory(int patid, int jrdocid, history hs)
+        public HttpResponseMessage Appointment(int patid, int jrdocid)
         {
             try
             {
-                history h = new history();
+                appointment apt = new appointment();
                 var d = DateTime.Now;
-                h.patient_id = patid;
-                h.jrdoc_id = jrdocid;
-                h.prescription = hs.prescription;
-                h.status = 0;
-                h.date = d.ToShortDateString();
-                h.time = d.ToShortTimeString();
-                db.histories.Add(h);
+                apt.patient_id = patid;
+                apt.jrdoc_id = jrdocid;
+                apt.date = d.ToShortDateString();
+                apt.time = d.ToShortTimeString();
+                apt.status = 0;
+                db.appointments.Add(apt);
                 db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, "Data Added In History Table Successfully");
+                return Request.CreateResponse(HttpStatusCode.OK, "new appointment added");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+
+
+        }
+        [HttpGet]
+        public HttpResponseMessage Gettingappointmentid(int patid)
+        {
+            try
+            {
+                var data = db.appointments.Where(a => a.patient_id == patid && a.status == 0).FirstOrDefault();
+                int aptid = data.appointment_id;
+                return Request.CreateResponse(HttpStatusCode.OK, aptid);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+
+
+        }
+        [HttpPost]
+        public HttpResponseMessage Addingprescription([FromBody] List<prescription> prescriptions)
+        {
+            try
+            {
+                foreach (var data in prescriptions)
+                {
+                    db.prescriptions.Add(data);
+                }
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "prescription added for current patient");
             }
             catch (Exception ex)
             {

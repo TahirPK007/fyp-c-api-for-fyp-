@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="virtualClinicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="virtualClinicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="acceptcase">
           <Key>
             <PropertyRef Name="acceptcase_id" />
@@ -15,15 +15,14 @@
           <Property Name="time" Type="datetime" />
           <Property Name="visit_id" Type="int" />
         </EntityType>
-        <EntityType Name="history">
+        <EntityType Name="appointments">
           <Key>
-            <PropertyRef Name="history_id" />
+            <PropertyRef Name="appointment_id" />
           </Key>
-          <Property Name="history_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="appointment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="patient_id" Type="int" />
           <Property Name="jrdoc_id" Type="int" />
-          <Property Name="prescription" Type="varchar" MaxLength="50" />
-          <Property Name="rating" Type="int" />
+          <Property Name="rating" Type="float" />
           <Property Name="date" Type="varchar" MaxLength="50" />
           <Property Name="time" Type="varchar" MaxLength="50" />
           <Property Name="status" Type="int" />
@@ -42,6 +41,7 @@
           <Property Name="gender" Type="varchar" MaxLength="30" />
           <Property Name="role" Type="varchar" MaxLength="50" />
           <Property Name="status" Type="int" />
+          <Property Name="rating" Type="float" />
         </EntityType>
         <EntityType Name="nurse">
           <Key>
@@ -66,6 +66,16 @@
           <Property Name="gender" Type="varchar" MaxLength="20" />
           <Property Name="date" Type="varchar" MaxLength="50" />
           <Property Name="time" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="prescription">
+          <Key>
+            <PropertyRef Name="prescription_id" />
+          </Key>
+          <Property Name="prescription_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="appointment_id" Type="int" />
+          <Property Name="medicine_name" Type="varchar" MaxLength="50" />
+          <Property Name="duration" Type="varchar" MaxLength="50" />
+          <Property Name="timings" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="seniorDoctor">
           <Key>
@@ -104,15 +114,17 @@
         </EntityType>
         <EntityContainer Name="virtualClinicModelStoreContainer">
           <EntitySet Name="acceptcase" EntityType="Self.acceptcase" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="history" EntityType="Self.history" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="appointments" EntityType="Self.appointments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="juniorDoctor" EntityType="Self.juniorDoctor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nurse" EntityType="Self.nurse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prescription" EntityType="Self.prescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="seniorDoctor" EntityType="Self.seniorDoctor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="visits" EntityType="Self.visits" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vitals" EntityType="Self.vitals" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="virtualClinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -126,15 +138,14 @@
           <Property Name="time" Type="DateTime" Precision="3" />
           <Property Name="visit_id" Type="Int32" />
         </EntityType>
-        <EntityType Name="history">
+        <EntityType Name="appointment">
           <Key>
-            <PropertyRef Name="history_id" />
+            <PropertyRef Name="appointment_id" />
           </Key>
-          <Property Name="history_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="appointment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="patient_id" Type="Int32" />
           <Property Name="jrdoc_id" Type="Int32" />
-          <Property Name="prescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="rating" Type="Int32" />
+          <Property Name="rating" Type="Double" />
           <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
@@ -153,6 +164,7 @@
           <Property Name="gender" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
+          <Property Name="rating" Type="Double" />
         </EntityType>
         <EntityType Name="nurse">
           <Key>
@@ -177,6 +189,16 @@
           <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="prescription">
+          <Key>
+            <PropertyRef Name="prescription_id" />
+          </Key>
+          <Property Name="prescription_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="appointment_id" Type="Int32" />
+          <Property Name="medicine_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="timings" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="seniorDoctor">
           <Key>
@@ -213,12 +235,13 @@
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="virtualClinicEntities16" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="virtualClinicEntities18" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
-          <EntitySet Name="histories" EntityType="Self.history" />
+          <EntitySet Name="appointments" EntityType="Self.appointment" />
           <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
           <EntitySet Name="nurses" EntityType="Self.nurse" />
           <EntitySet Name="patients" EntityType="Self.patient" />
+          <EntitySet Name="prescriptions" EntityType="Self.prescription" />
           <EntitySet Name="seniorDoctors" EntityType="Self.seniorDoctor" />
           <EntitySet Name="visits" EntityType="Self.visit" />
           <EntitySet Name="vitals" EntityType="Self.vital" />
@@ -228,7 +251,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities16">
+        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities18">
           <EntitySetMapping Name="acceptcases">
             <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
               <MappingFragment StoreEntitySet="acceptcase">
@@ -240,17 +263,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="histories">
-            <EntityTypeMapping TypeName="virtualClinicModel.history">
-              <MappingFragment StoreEntitySet="history">
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="history_id" ColumnName="history_id" />
+          <EntitySetMapping Name="appointments">
+            <EntityTypeMapping TypeName="virtualClinicModel.appointment">
+              <MappingFragment StoreEntitySet="appointments">
+                <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
                 <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
-                <ScalarProperty Name="prescription" ColumnName="prescription" />
                 <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -267,6 +289,7 @@
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -293,6 +316,17 @@
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="time" ColumnName="time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prescriptions">
+            <EntityTypeMapping TypeName="virtualClinicModel.prescription">
+              <MappingFragment StoreEntitySet="prescription">
+                <ScalarProperty Name="prescription_id" ColumnName="prescription_id" />
+                <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
+                <ScalarProperty Name="medicine_name" ColumnName="medicine_name" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="timings" ColumnName="timings" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

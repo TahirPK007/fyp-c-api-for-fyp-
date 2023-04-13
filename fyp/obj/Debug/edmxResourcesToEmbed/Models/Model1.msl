@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities16">
+  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities18">
     <EntitySetMapping Name="acceptcases">
       <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
         <MappingFragment StoreEntitySet="acceptcase">
@@ -12,17 +12,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="histories">
-      <EntityTypeMapping TypeName="virtualClinicModel.history">
-        <MappingFragment StoreEntitySet="history">
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="history_id" ColumnName="history_id" />
+    <EntitySetMapping Name="appointments">
+      <EntityTypeMapping TypeName="virtualClinicModel.appointment">
+        <MappingFragment StoreEntitySet="appointments">
+          <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
           <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
-          <ScalarProperty Name="prescription" ColumnName="prescription" />
           <ScalarProperty Name="rating" ColumnName="rating" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="status" ColumnName="status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -39,6 +38,7 @@
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -65,6 +65,17 @@
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="time" ColumnName="time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="prescriptions">
+      <EntityTypeMapping TypeName="virtualClinicModel.prescription">
+        <MappingFragment StoreEntitySet="prescription">
+          <ScalarProperty Name="prescription_id" ColumnName="prescription_id" />
+          <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
+          <ScalarProperty Name="medicine_name" ColumnName="medicine_name" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="timings" ColumnName="timings" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

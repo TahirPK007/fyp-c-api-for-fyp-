@@ -10,15 +10,14 @@
     <Property Name="time" Type="DateTime" Precision="3" />
     <Property Name="visit_id" Type="Int32" />
   </EntityType>
-  <EntityType Name="history">
+  <EntityType Name="appointment">
     <Key>
-      <PropertyRef Name="history_id" />
+      <PropertyRef Name="appointment_id" />
     </Key>
-    <Property Name="history_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="appointment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="patient_id" Type="Int32" />
     <Property Name="jrdoc_id" Type="Int32" />
-    <Property Name="prescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="rating" Type="Int32" />
+    <Property Name="rating" Type="Double" />
     <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
@@ -37,6 +36,7 @@
     <Property Name="gender" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
+    <Property Name="rating" Type="Double" />
   </EntityType>
   <EntityType Name="nurse">
     <Key>
@@ -61,6 +61,16 @@
     <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="prescription">
+    <Key>
+      <PropertyRef Name="prescription_id" />
+    </Key>
+    <Property Name="prescription_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="appointment_id" Type="Int32" />
+    <Property Name="medicine_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="timings" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="seniorDoctor">
     <Key>
@@ -97,12 +107,13 @@
     <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
   </EntityType>
-  <EntityContainer Name="virtualClinicEntities16" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities18" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
-    <EntitySet Name="histories" EntityType="Self.history" />
+    <EntitySet Name="appointments" EntityType="Self.appointment" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
     <EntitySet Name="nurses" EntityType="Self.nurse" />
     <EntitySet Name="patients" EntityType="Self.patient" />
+    <EntitySet Name="prescriptions" EntityType="Self.prescription" />
     <EntitySet Name="seniorDoctors" EntityType="Self.seniorDoctor" />
     <EntitySet Name="visits" EntityType="Self.visit" />
     <EntitySet Name="vitals" EntityType="Self.vital" />
