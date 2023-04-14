@@ -21,6 +21,7 @@
     <Property Name="date" Type="varchar" MaxLength="50" />
     <Property Name="time" Type="varchar" MaxLength="50" />
     <Property Name="status" Type="int" />
+    <Property Name="srdoc_id" Type="int" />
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>
@@ -81,6 +82,7 @@
     <Property Name="email" Type="varchar" MaxLength="50" />
     <Property Name="password" Type="varchar" MaxLength="50" />
     <Property Name="role" Type="varchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
   </EntityType>
   <EntityType Name="visits">
     <Key>

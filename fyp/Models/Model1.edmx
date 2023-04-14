@@ -26,6 +26,7 @@
           <Property Name="date" Type="varchar" MaxLength="50" />
           <Property Name="time" Type="varchar" MaxLength="50" />
           <Property Name="status" Type="int" />
+          <Property Name="srdoc_id" Type="int" />
         </EntityType>
         <EntityType Name="juniorDoctor">
           <Key>
@@ -86,6 +87,7 @@
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
           <Property Name="role" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
         </EntityType>
         <EntityType Name="visits">
           <Key>
@@ -149,6 +151,7 @@
           <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
+          <Property Name="srdoc_id" Type="Int32" />
         </EntityType>
         <EntityType Name="juniorDoctor">
           <Key>
@@ -209,6 +212,7 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
         </EntityType>
         <EntityType Name="visit">
           <Key>
@@ -235,7 +239,7 @@
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="virtualClinicEntities18" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="virtualClinicEntities19" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
           <EntitySet Name="appointments" EntityType="Self.appointment" />
           <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
@@ -251,7 +255,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities18">
+        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities19">
           <EntitySetMapping Name="acceptcases">
             <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
               <MappingFragment StoreEntitySet="acceptcase">
@@ -273,6 +277,7 @@
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="time" ColumnName="time" />
                 <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="srdoc_id" ColumnName="srdoc_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -338,6 +343,7 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

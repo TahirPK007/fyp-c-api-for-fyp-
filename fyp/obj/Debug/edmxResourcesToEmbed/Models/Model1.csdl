@@ -21,6 +21,7 @@
     <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
+    <Property Name="srdoc_id" Type="Int32" />
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>
@@ -81,6 +82,7 @@
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
   </EntityType>
   <EntityType Name="visit">
     <Key>
@@ -107,7 +109,7 @@
     <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
   </EntityType>
-  <EntityContainer Name="virtualClinicEntities18" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities19" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
     <EntitySet Name="appointments" EntityType="Self.appointment" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />

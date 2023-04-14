@@ -14,7 +14,7 @@ namespace fyp.Controllers
 {
     public class NurselController : ApiController
     {
-        virtualClinicEntities18 db = new virtualClinicEntities18();
+        virtualClinicEntities19 db = new virtualClinicEntities19();
 
         [HttpPost]
         public HttpResponseMessage Nurselogin(string email, string password)

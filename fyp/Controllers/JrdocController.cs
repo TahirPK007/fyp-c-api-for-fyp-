@@ -12,7 +12,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities18 db = new virtualClinicEntities18();
+        virtualClinicEntities19 db = new virtualClinicEntities19();
         [HttpPost]
         public HttpResponseMessage Jrsignup(juniorDoctor jr)
         {
@@ -107,10 +107,11 @@ namespace fyp.Controllers
                 acceptcase acp = new acceptcase();
                 var visittoupdate = db.visits.Where(v => v.status == 1 && v.jrdoc_id == jrdocid).FirstOrDefault();
                 TimeSpan acceptedtime = DateTime.Now.Subtract(visittoupdate.AssignedDatetime.Value);
+                TimeSpan result=visittoupdate.AssignedDatetime.Value.Subtract(DateTime.Now.Add(acceptedtime));
                 acp.patient_id = patid;
                 acp.jrdoc_id = jrdocid;
                 acp.visit_id = visitid;
-                acp.time = DateTime.Now.Add(acceptedtime);
+                acp.time = DateTime.Now.Add(result);
                 visittoupdate.status = 2;
                 db.acceptcases.Add(acp);
                 db.visits.AddOrUpdate(visittoupdate);

@@ -12,7 +12,7 @@ namespace fyp.Controllers
     public class JobsController : ApiController
     {
 
-        virtualClinicEntities18 db = new virtualClinicEntities18();
+        virtualClinicEntities19 db = new virtualClinicEntities19();
         [HttpGet]
         public HttpResponseMessage AssignPatientToDoctor()
         {
@@ -21,7 +21,7 @@ namespace fyp.Controllers
             foreach (var visit in pending)
             {
                 var timeDiff = DateTime.Now.Subtract(visit.AssignedDatetime.Value);
-                if (timeDiff.TotalSeconds >= 120)
+                if (timeDiff.TotalSeconds >= 10)
                 {
                     visit.status = 0;
                     //visit.jrdoc_id = null;
