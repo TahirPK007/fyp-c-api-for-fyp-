@@ -109,6 +109,7 @@
     <Property Name="symptoms" Type="varchar" MaxLength="100" />
     <Property Name="image" Type="varchar(max)" />
     <Property Name="status" Type="int" />
+    <Property Name="rated" Type="int" />
   </EntityType>
   <EntityContainer Name="virtualClinicModelStoreContainer">
     <EntitySet Name="acceptcase" EntityType="Self.acceptcase" Schema="dbo" store:Type="Tables" />

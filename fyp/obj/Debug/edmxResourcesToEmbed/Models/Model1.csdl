@@ -109,8 +109,9 @@
     <Property Name="symptoms" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
+    <Property Name="rated" Type="Int32" />
   </EntityType>
-  <EntityContainer Name="virtualClinicEntities21" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities22" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
     <EntitySet Name="appointments" EntityType="Self.appointment" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />

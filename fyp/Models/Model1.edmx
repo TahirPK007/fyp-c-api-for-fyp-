@@ -114,6 +114,7 @@
           <Property Name="symptoms" Type="varchar" MaxLength="100" />
           <Property Name="image" Type="varchar(max)" />
           <Property Name="status" Type="int" />
+          <Property Name="rated" Type="int" />
         </EntityType>
         <EntityContainer Name="virtualClinicModelStoreContainer">
           <EntitySet Name="acceptcase" EntityType="Self.acceptcase" Schema="dbo" store:Type="Tables" />
@@ -240,8 +241,9 @@
           <Property Name="symptoms" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
+          <Property Name="rated" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="virtualClinicEntities21" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="virtualClinicEntities22" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
           <EntitySet Name="appointments" EntityType="Self.appointment" />
           <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
@@ -257,7 +259,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities21">
+        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities22">
           <EntitySetMapping Name="acceptcases">
             <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
               <MappingFragment StoreEntitySet="acceptcase">
@@ -374,6 +376,7 @@
                 <ScalarProperty Name="symptoms" ColumnName="symptoms" />
                 <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="rated" ColumnName="rated" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

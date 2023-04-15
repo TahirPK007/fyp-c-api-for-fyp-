@@ -4,7 +4,6 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using fyp.Models;
 
@@ -12,7 +11,10 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities21 db = new virtualClinicEntities21();
+        virtualClinicEntities22 db = new virtualClinicEntities22();
+
+        public object SqlMethods { get; private set; }
+
         [HttpPost]
         public HttpResponseMessage Jrsignup(juniorDoctor jr)
         {
@@ -124,7 +126,7 @@ namespace fyp.Controllers
         }
         //adding data into the appointment table
         [HttpPost]
-        public HttpResponseMessage Appointment(int patid, int jrdocid)
+        public HttpResponseMessage Appointment(int patid, int jrdocid,int visitid)
         {
             try
             {
@@ -135,6 +137,7 @@ namespace fyp.Controllers
                 apt.date = d.ToShortDateString();
                 apt.time = d.ToShortTimeString();
                 apt.status = 0;
+                apt.visit_id= visitid;
                 db.appointments.Add(apt);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "new appointment added");

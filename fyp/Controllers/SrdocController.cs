@@ -12,7 +12,8 @@ namespace fyp.Controllers
 {
     public class SrdocController : ApiController
     {
-        virtualClinicEntities21 db = new virtualClinicEntities21();
+        virtualClinicEntities22 db = new virtualClinicEntities22();
+
         [HttpGet]
         public HttpResponseMessage AssignAppointmentsToSrDoctor()
         {
@@ -90,7 +91,7 @@ namespace fyp.Controllers
         {
             try
             {
-                var appointments = db.appointments.Where(x=>x.srdoc_id== id).ToList();
+                var appointments = db.appointments.Where(x => x.srdoc_id == id).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, appointments);
 
             }
@@ -101,12 +102,32 @@ namespace fyp.Controllers
         }
         //it will get the details about the specific appointment
         [HttpGet]
-        public HttpResponseMessage AppointmentDetails(int id)
+        public HttpResponseMessage AppointmentDetails(int visitid)
         {
             try
             {
-                var appointments = db.appointments.Where(x => x.srdoc_id == id).ToList();
-                return Request.CreateResponse(HttpStatusCode.OK, appointments);
+                var data = db.visits.Where(v => v.visit_id == visitid).FirstOrDefault();
+                var data1 = db.appointments.Where(a => a.visit_id == visitid).FirstOrDefault();
+                var aptid = data1.appointment_id;
+                var jrdocid = data.jrdoc_id;
+                var patid = data.patient_id;
+                var details = (from x in db.visits
+                               join p in db.patients on x.patient_id equals p.patient_id
+                               join v in db.vitals on p.patient_id equals v.patient_id
+                               join jr in db.juniorDoctors on x.jrdoc_id equals jr.jrdoc_id
+                               join ac in db.acceptcases on x.visit_id equals ac.visit_id
+                               join apt in db.appointments on x.visit_id equals apt.visit_id
+                               join pres in db.prescriptions on apt.appointment_id equals pres.appointment_id
+                               where x.visit_id == visitid
+                               where p.patient_id == patid
+                               where v.status == 1 && v.rated == 0 && v.patient_id == patid
+                               where jr.jrdoc_id == jrdocid
+                               where ac.acceptcase_id == visitid
+                               where apt.appointment_id == visitid
+                               where pres.appointment_id == aptid
+                               select new { x }
+                               ).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, details);
 
             }
             catch (Exception ex)

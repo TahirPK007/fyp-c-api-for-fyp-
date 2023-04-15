@@ -14,7 +14,7 @@ namespace fyp.Controllers
 {
     public class NurselController : ApiController
     {
-        virtualClinicEntities21 db = new virtualClinicEntities21();
+        virtualClinicEntities22 db = new virtualClinicEntities22();
 
         [HttpPost]
         public HttpResponseMessage Nurselogin(string email, string password)
@@ -51,6 +51,7 @@ namespace fyp.Controllers
                     vit.symptoms = (request["symptoms"].ToString());
                     vit.image = "http://192.168.0.105/fyp/Content/Uploads/" + filename;
                     vit.status = 0;
+                    vit.rated = 0;
                     db.vitals.Add(vit);
                     db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
@@ -65,8 +66,10 @@ namespace fyp.Controllers
                     vit.symptoms = (request["symptoms"].ToString());
                     vit.image = null;
                     vit.status = 0;
+                    vit.rated = 0;
                     db.vitals.Add(vit);
                     db.SaveChanges();
+
                     return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
                 }
 
@@ -76,27 +79,6 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-        [HttpGet]
-        public HttpResponseMessage Fetchpatvit()
-        {
-            try
-            {
-                var fetchedpatient = (from p in db.patients join v in db.vitals on p.patient_id equals v.patient_id select new { p.full_name, p.dob, p.gender, v }).ToList();
-                return Request.CreateResponse(HttpStatusCode.OK, fetchedpatient);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
-        //this function was for testing its not being used anymore.
-        //[HttpGet]
-        //public HttpResponseMessage Fetchvits()
-        //{
 
-        //    var data = db.vitals.ToList();
-        //    return Request.CreateResponse(HttpStatusCode.OK, data);
-
-        //}
     }
 }
