@@ -7,7 +7,7 @@
     <Property Name="acceptcase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="patient_id" Type="Int32" />
     <Property Name="jrdoc_id" Type="Int32" />
-    <Property Name="time" Type="DateTime" Precision="3" />
+    <Property Name="time" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="visit_id" Type="Int32" />
   </EntityType>
   <EntityType Name="appointment">
@@ -22,6 +22,7 @@
     <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
     <Property Name="srdoc_id" Type="Int32" />
+    <Property Name="visit_id" Type="Int32" />
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>
@@ -109,7 +110,7 @@
     <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
   </EntityType>
-  <EntityContainer Name="virtualClinicEntities19" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities21" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
     <EntitySet Name="appointments" EntityType="Self.appointment" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />

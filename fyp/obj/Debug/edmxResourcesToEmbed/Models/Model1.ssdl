@@ -7,7 +7,7 @@
     <Property Name="acceptcase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="patient_id" Type="int" />
     <Property Name="jrdoc_id" Type="int" />
-    <Property Name="time" Type="datetime" />
+    <Property Name="time" Type="varchar" MaxLength="200" />
     <Property Name="visit_id" Type="int" />
   </EntityType>
   <EntityType Name="appointments">
@@ -22,6 +22,7 @@
     <Property Name="time" Type="varchar" MaxLength="50" />
     <Property Name="status" Type="int" />
     <Property Name="srdoc_id" Type="int" />
+    <Property Name="visit_id" Type="int" />
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>

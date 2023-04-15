@@ -12,7 +12,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities19 db = new virtualClinicEntities19();
+        virtualClinicEntities21 db = new virtualClinicEntities21();
         [HttpPost]
         public HttpResponseMessage Jrsignup(juniorDoctor jr)
         {
@@ -98,7 +98,7 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound, "error occured while logging out");
             }
         }
-
+        //when the doctors accept the case
         [HttpPost]
         public HttpResponseMessage AcceptedCase(int jrdocid, int patid, int visitid)
         {
@@ -107,11 +107,10 @@ namespace fyp.Controllers
                 acceptcase acp = new acceptcase();
                 var visittoupdate = db.visits.Where(v => v.status == 1 && v.jrdoc_id == jrdocid).FirstOrDefault();
                 TimeSpan acceptedtime = DateTime.Now.Subtract(visittoupdate.AssignedDatetime.Value);
-                TimeSpan result=visittoupdate.AssignedDatetime.Value.Subtract(DateTime.Now.Add(acceptedtime));
                 acp.patient_id = patid;
                 acp.jrdoc_id = jrdocid;
                 acp.visit_id = visitid;
-                acp.time = DateTime.Now.Add(result);
+                acp.time = $"{acceptedtime.Hours} hour {acceptedtime.Minutes} minute {acceptedtime.Seconds} second";
                 visittoupdate.status = 2;
                 db.acceptcases.Add(acp);
                 db.visits.AddOrUpdate(visittoupdate);
@@ -123,6 +122,7 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        //adding data into the appointment table
         [HttpPost]
         public HttpResponseMessage Appointment(int patid, int jrdocid)
         {
@@ -146,6 +146,7 @@ namespace fyp.Controllers
 
 
         }
+        //in this function getting the last patient's appointment id
         [HttpGet]
         public HttpResponseMessage Gettingappointmentid(int patid)
         {

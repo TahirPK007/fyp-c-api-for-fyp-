@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities19">
+  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities21">
     <EntitySetMapping Name="acceptcases">
       <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
         <MappingFragment StoreEntitySet="acceptcase">
@@ -23,6 +23,7 @@
           <ScalarProperty Name="time" ColumnName="time" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="srdoc_id" ColumnName="srdoc_id" />
+          <ScalarProperty Name="visit_id" ColumnName="visit_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

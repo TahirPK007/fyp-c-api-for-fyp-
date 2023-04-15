@@ -12,7 +12,7 @@ namespace fyp.Controllers
     public class JobsController : ApiController
     {
 
-        virtualClinicEntities19 db = new virtualClinicEntities19();
+        virtualClinicEntities21 db = new virtualClinicEntities21();
         [HttpGet]
         public HttpResponseMessage AssignPatientToDoctor()
         {

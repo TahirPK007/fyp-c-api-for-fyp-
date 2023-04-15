@@ -12,7 +12,7 @@ namespace fyp.Controllers
 {
     public class SrdocController : ApiController
     {
-        virtualClinicEntities19 db = new virtualClinicEntities19();
+        virtualClinicEntities21 db = new virtualClinicEntities21();
         [HttpGet]
         public HttpResponseMessage AssignAppointmentsToSrDoctor()
         {
@@ -84,13 +84,28 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
+        //it will get the no.of appointments assigned to a sr doc
         [HttpGet]
         public HttpResponseMessage MyNewAppointments(int id)
         {
             try
             {
                 var appointments = db.appointments.Where(x=>x.srdoc_id== id).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, appointments);
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+            }
+        }
+        //it will get the details about the specific appointment
+        [HttpGet]
+        public HttpResponseMessage AppointmentDetails(int id)
+        {
+            try
+            {
+                var appointments = db.appointments.Where(x => x.srdoc_id == id).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, appointments);
 
             }
