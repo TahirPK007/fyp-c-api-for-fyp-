@@ -117,17 +117,32 @@ namespace fyp.Controllers
                                join jr in db.juniorDoctors on x.jrdoc_id equals jr.jrdoc_id
                                join ac in db.acceptcases on x.visit_id equals ac.visit_id
                                join apt in db.appointments on x.visit_id equals apt.visit_id
-                               join pres in db.prescriptions on apt.appointment_id equals pres.appointment_id
+
                                where x.visit_id == visitid
                                where p.patient_id == patid
                                where v.status == 1 && v.rated == 0 && v.patient_id == patid
                                where jr.jrdoc_id == jrdocid
-                               where ac.acceptcase_id == visitid
-                               where apt.appointment_id == visitid
-                               where pres.appointment_id == aptid
-                               select new { x }
-                               ).ToList();
+                               where ac.visit_id == visitid
+                               where apt.visit_id == visitid
+
+                               select new { x, p, v, jr, ac, apt }).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, details);
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+            }
+        }
+
+        //it will get the prescription details according to current appointment
+        [HttpGet]
+        public HttpResponseMessage Getpresdetails(int aptid)
+        {
+            try
+            {
+                var data = db.prescriptions.Where(p => p.appointment_id == aptid).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, data);
 
             }
             catch (Exception ex)
