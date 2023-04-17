@@ -126,7 +126,7 @@ namespace fyp.Controllers
         }
         //adding data into the appointment table
         [HttpPost]
-        public HttpResponseMessage Appointment(int patid, int jrdocid,int visitid)
+        public HttpResponseMessage Appointment(int patid, int jrdocid, int visitid)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace fyp.Controllers
                 apt.date = d.ToShortDateString();
                 apt.time = d.ToShortTimeString();
                 apt.status = 0;
-                apt.visit_id= visitid;
+                apt.visit_id = visitid;
                 db.appointments.Add(apt);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "new appointment added");
@@ -183,6 +183,25 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
+        [HttpPost]
+        public HttpResponseMessage Updatingvitalstatus(int vitalid)
+        {
+            try
+            {
+                var data = db.vitals.Where(v => v.vital_id == vitalid).FirstOrDefault();
+                data.status = 1;
+                db.vitals.AddOrUpdate(data);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "Successfully Updated");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
 
 
     }

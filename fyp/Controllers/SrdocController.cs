@@ -91,7 +91,7 @@ namespace fyp.Controllers
         {
             try
             {
-                var appointments = db.appointments.Where(x => x.srdoc_id == id).ToList();
+                var appointments = db.appointments.Where(x => x.srdoc_id == id && x.status==0).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, appointments);
 
             }
@@ -148,6 +148,33 @@ namespace fyp.Controllers
             catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+            }
+        }
+
+        //it will finish the current appointment with rating
+        [HttpPost]
+        public HttpResponseMessage DoneAppointment(int aptid, float rating, appointment appo)
+        {
+            try
+            {
+                var data = db.appointments.Where(a => a.appointment_id == aptid).FirstOrDefault();
+                //data.patient_id = appo.patient_id;
+                //data.jrdoc_id = appo.jrdoc_id;
+                data.rating = rating;
+                //data.date = appo.date;
+                //data.time = appo.time;
+                data.status = 1;
+                //data.srdoc_id = appo.srdoc_id;
+                //data.visit_id = appo.visit_id;
+
+
+                db.appointments.AddOrUpdate(data);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "Appointment Done");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 

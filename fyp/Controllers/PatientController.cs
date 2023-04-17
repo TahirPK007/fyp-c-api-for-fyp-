@@ -39,6 +39,7 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
         [HttpPost]
         public HttpResponseMessage Checkcnic(int cnic)
         {
