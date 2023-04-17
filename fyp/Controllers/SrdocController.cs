@@ -153,22 +153,17 @@ namespace fyp.Controllers
 
         //it will finish the current appointment with rating
         [HttpPost]
-        public HttpResponseMessage DoneAppointment(int aptid, float rating, appointment appo)
+        public HttpResponseMessage DoneAppointment(int aptid, float rating,int patid)
         {
             try
             {
                 var data = db.appointments.Where(a => a.appointment_id == aptid).FirstOrDefault();
-                //data.patient_id = appo.patient_id;
-                //data.jrdoc_id = appo.jrdoc_id;
+                var data1 = db.vitals.Where(v => v.patient_id == patid && v.status == 1 && v.rated == 0).FirstOrDefault();
                 data.rating = rating;
-                //data.date = appo.date;
-                //data.time = appo.time;
                 data.status = 1;
-                //data.srdoc_id = appo.srdoc_id;
-                //data.visit_id = appo.visit_id;
-
-
                 db.appointments.AddOrUpdate(data);
+                data1.rated = 1;
+                db.vitals.AddOrUpdate(data1);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "Appointment Done");
             }
