@@ -39,7 +39,7 @@ namespace fyp.Controllers
                 }
 
             }
-            //if more than srdocs are online
+            //if more than one srdocs are online
             if (availableDoctors.Count > 1)
             {
                 int appointmentsPerDoctor = appointments.Count() / availableDoctors.Count();

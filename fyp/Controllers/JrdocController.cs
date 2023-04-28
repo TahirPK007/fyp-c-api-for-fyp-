@@ -183,7 +183,7 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
+        //updating vitals status to prevent from re-fetching the same patient's vitals
         [HttpPost]
         public HttpResponseMessage Updatingvitalstatus(int vitalid)
         {

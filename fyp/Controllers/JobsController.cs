@@ -1,6 +1,7 @@
 ﻿using fyp.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -43,6 +44,8 @@ namespace fyp.Controllers
                 if (result == null)
                     availableDoctors.Add(doc);
             }
+            //sorted the list according to rating
+            availableDoctors.OrderByDescending(x=>x.rating).ToList();
 
             //now you have new vists and available docs.
             //loop each visit and assign the doc one by one
@@ -62,6 +65,20 @@ namespace fyp.Controllers
                     availableDoctors.Remove(doctor);
                 }
             }
+            db.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+
+        //this function will get the rating from apt table and calculate the avg and assign to jrdoc in his table
+        [HttpPost]
+        public HttpResponseMessage CalculateRatingAndAssingToJrdoc(int jrdocid)
+        {
+            var jr=db.juniorDoctors.Where(d => d.jrdoc_id == jrdocid).FirstOrDefault();
+            var apt=db.appointments.Where(a => a.jrdoc_id == jrdocid).ToList();
+            float avgrating = (float)apt.Average(b => b.rating);
+            jr.rating = avgrating;
+            db.juniorDoctors.AddOrUpdate(jr);
             db.SaveChanges();
             return Request.CreateResponse(HttpStatusCode.OK);
         }

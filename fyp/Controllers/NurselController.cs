@@ -35,7 +35,6 @@ namespace fyp.Controllers
         {
             try
             {
-
                 HttpRequest request = HttpContext.Current.Request;
                 var image = request.Files["image"];
                 if (image != null)
