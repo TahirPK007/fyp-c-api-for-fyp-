@@ -79,6 +79,7 @@ namespace fyp.Controllers
             {
                 var jr = db.juniorDoctors.Where(d => d.jrdoc_id == jrdocid).FirstOrDefault();
                 var apt = db.appointments.Where(a => a.jrdoc_id == jrdocid).ToList();
+                //var data = db.appointments.Where(a => a.time.Contains("%4%")).ToList();
                 float avgrating = (float)apt.Average(b => b.rating);
                 jr.rating = avgrating;
                 db.juniorDoctors.AddOrUpdate(jr);
