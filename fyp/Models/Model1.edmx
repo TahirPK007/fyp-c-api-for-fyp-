@@ -243,7 +243,7 @@
           <Property Name="status" Type="Int32" />
           <Property Name="rated" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="virtualClinicEntities22" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="virtualClinicEntities23" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
           <EntitySet Name="appointments" EntityType="Self.appointment" />
           <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
@@ -259,7 +259,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities22">
+        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities23">
           <EntitySetMapping Name="acceptcases">
             <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
               <MappingFragment StoreEntitySet="acceptcase">

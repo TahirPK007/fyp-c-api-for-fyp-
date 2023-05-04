@@ -13,10 +13,10 @@ namespace fyp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class virtualClinicEntities22 : DbContext
+    public partial class virtualClinicEntities23 : DbContext
     {
-        public virtualClinicEntities22()
-            : base("name=virtualClinicEntities22")
+        public virtualClinicEntities23()
+            : base("name=virtualClinicEntities23")
         {
         }
     

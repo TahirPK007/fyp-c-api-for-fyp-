@@ -11,7 +11,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities22 db = new virtualClinicEntities22();
+        virtualClinicEntities23 db = new virtualClinicEntities23();
 
         public object SqlMethods { get; private set; }
 
