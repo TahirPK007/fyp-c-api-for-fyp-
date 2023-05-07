@@ -60,7 +60,7 @@
             <PropertyRef Name="patient_id" />
           </Key>
           <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cnic" Type="int" />
+          <Property Name="cnic" Type="bigint" />
           <Property Name="full_name" Type="varchar" MaxLength="30" />
           <Property Name="relation" Type="varchar" MaxLength="50" />
           <Property Name="relative_name" Type="varchar" MaxLength="50" />
@@ -108,7 +108,8 @@
           </Key>
           <Property Name="vital_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="patient_id" Type="int" />
-          <Property Name="blood_pressure" Type="varchar" MaxLength="50" />
+          <Property Name="systolic" Type="varchar" MaxLength="50" />
+          <Property Name="diastolic" Type="varchar" MaxLength="50" />
           <Property Name="sugar" Type="varchar" MaxLength="50" />
           <Property Name="temperature" Type="varchar" MaxLength="50" />
           <Property Name="symptoms" Type="varchar" MaxLength="100" />
@@ -187,7 +188,7 @@
             <PropertyRef Name="patient_id" />
           </Key>
           <Property Name="patient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cnic" Type="Int32" />
+          <Property Name="cnic" Type="Int64" />
           <Property Name="full_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="relation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="relative_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -235,7 +236,8 @@
           </Key>
           <Property Name="vital_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="patient_id" Type="Int32" />
-          <Property Name="blood_pressure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="systolic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="diastolic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="sugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="temperature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="symptoms" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -243,7 +245,7 @@
           <Property Name="status" Type="Int32" />
           <Property Name="rated" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="virtualClinicEntities23" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="virtualClinicEntities25" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
           <EntitySet Name="appointments" EntityType="Self.appointment" />
           <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
@@ -259,7 +261,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities23">
+        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities25">
           <EntitySetMapping Name="acceptcases">
             <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
               <MappingFragment StoreEntitySet="acceptcase">
@@ -370,7 +372,8 @@
               <MappingFragment StoreEntitySet="vitals">
                 <ScalarProperty Name="vital_id" ColumnName="vital_id" />
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
-                <ScalarProperty Name="blood_pressure" ColumnName="blood_pressure" />
+                <ScalarProperty Name="systolic" ColumnName="systolic" />
+                <ScalarProperty Name="diastolic" ColumnName="diastolic" />
                 <ScalarProperty Name="sugar" ColumnName="sugar" />
                 <ScalarProperty Name="temperature" ColumnName="temperature" />
                 <ScalarProperty Name="symptoms" ColumnName="symptoms" />

@@ -14,7 +14,7 @@ namespace fyp.Controllers
 {
     public class NurselController : ApiController
     {
-        virtualClinicEntities23 db = new virtualClinicEntities23();
+        virtualClinicEntities25 db = new virtualClinicEntities25();
 
         [HttpPost]
         public HttpResponseMessage Nurselogin(string email, string password)
@@ -44,11 +44,12 @@ namespace fyp.Controllers
                     image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
                     vital vit = new vital();
                     vit.patient_id = int.Parse(request["patient_id"]);
-                    vit.blood_pressure = (request["blood_pressure"]);
+                    vit.systolic = (request["systolic"]);
+                    vit.diastolic = (request["diastolic"]);
                     vit.sugar = (request["sugar"]);
                     vit.temperature = (request["temperature"]);
                     vit.symptoms = (request["symptoms"].ToString());
-                    vit.image = "http://192.168.0.105/fyp/Content/Uploads/" + filename;
+                    vit.image = "http://192.168.0.106/fyp/Content/Uploads/" + filename;
                     vit.status = 0;
                     vit.rated = 0;
                     db.vitals.Add(vit);
@@ -59,7 +60,8 @@ namespace fyp.Controllers
                 {
                     vital vit = new vital();
                     vit.patient_id = int.Parse(request["patient_id"]);
-                    vit.blood_pressure = (request["blood_pressure"]);
+                    vit.systolic = (request["systolic"]);
+                    vit.diastolic = (request["diastolic"]);
                     vit.sugar = (request["sugar"]);
                     vit.temperature = (request["temperature"]);
                     vit.symptoms = (request["symptoms"].ToString());

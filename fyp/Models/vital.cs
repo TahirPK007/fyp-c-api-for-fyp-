@@ -16,7 +16,8 @@ namespace fyp.Models
     {
         public int vital_id { get; set; }
         public Nullable<int> patient_id { get; set; }
-        public string blood_pressure { get; set; }
+        public string systolic { get; set; }
+        public string diastolic { get; set; }
         public string sugar { get; set; }
         public string temperature { get; set; }
         public string symptoms { get; set; }

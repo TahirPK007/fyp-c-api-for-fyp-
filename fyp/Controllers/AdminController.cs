@@ -5,13 +5,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using fyp.Models;
 
 namespace fyp.Controllers
 {
     public class AdminController : ApiController
     {
-        virtualClinicEntities23 db = new virtualClinicEntities23();
+        virtualClinicEntities25 db = new virtualClinicEntities25();
         [HttpPost]
         public HttpResponseMessage Addnewnurse(nurse nur)
         {

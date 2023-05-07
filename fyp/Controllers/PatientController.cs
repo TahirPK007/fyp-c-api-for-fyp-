@@ -12,7 +12,7 @@ namespace fyp.Controllers
 {
     public class PatientController : ApiController
     {
-        virtualClinicEntities23 db = new virtualClinicEntities23();
+        virtualClinicEntities25 db = new virtualClinicEntities25();
         [HttpPost]
         public HttpResponseMessage Addpat(patient pat)
         {
@@ -50,7 +50,7 @@ namespace fyp.Controllers
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, "patient does'nt exist");
+                return Request.CreateResponse(HttpStatusCode.NotFound, "no record");
             }
         }
         [HttpPost]

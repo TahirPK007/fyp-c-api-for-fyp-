@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities23">
+  <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities25">
     <EntitySetMapping Name="acceptcases">
       <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
         <MappingFragment StoreEntitySet="acceptcase">
@@ -111,7 +111,8 @@
         <MappingFragment StoreEntitySet="vitals">
           <ScalarProperty Name="vital_id" ColumnName="vital_id" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
-          <ScalarProperty Name="blood_pressure" ColumnName="blood_pressure" />
+          <ScalarProperty Name="systolic" ColumnName="systolic" />
+          <ScalarProperty Name="diastolic" ColumnName="diastolic" />
           <ScalarProperty Name="sugar" ColumnName="sugar" />
           <ScalarProperty Name="temperature" ColumnName="temperature" />
           <ScalarProperty Name="symptoms" ColumnName="symptoms" />

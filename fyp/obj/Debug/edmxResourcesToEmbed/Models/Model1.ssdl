@@ -55,7 +55,7 @@
       <PropertyRef Name="patient_id" />
     </Key>
     <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cnic" Type="int" />
+    <Property Name="cnic" Type="bigint" />
     <Property Name="full_name" Type="varchar" MaxLength="30" />
     <Property Name="relation" Type="varchar" MaxLength="50" />
     <Property Name="relative_name" Type="varchar" MaxLength="50" />
@@ -103,7 +103,8 @@
     </Key>
     <Property Name="vital_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="patient_id" Type="int" />
-    <Property Name="blood_pressure" Type="varchar" MaxLength="50" />
+    <Property Name="systolic" Type="varchar" MaxLength="50" />
+    <Property Name="diastolic" Type="varchar" MaxLength="50" />
     <Property Name="sugar" Type="varchar" MaxLength="50" />
     <Property Name="temperature" Type="varchar" MaxLength="50" />
     <Property Name="symptoms" Type="varchar" MaxLength="100" />

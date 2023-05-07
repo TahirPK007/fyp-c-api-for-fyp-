@@ -12,7 +12,7 @@ namespace fyp.Controllers
 {
     public class SrdocController : ApiController
     {
-        virtualClinicEntities23 db = new virtualClinicEntities23();
+        virtualClinicEntities25 db = new virtualClinicEntities25();
 
         [HttpGet]
         public HttpResponseMessage AssignAppointmentsToSrDoctor()
