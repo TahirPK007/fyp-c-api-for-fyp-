@@ -168,6 +168,7 @@
     <Compile Include="Controllers\NurselController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\SrdocController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

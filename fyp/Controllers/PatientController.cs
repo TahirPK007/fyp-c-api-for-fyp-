@@ -41,7 +41,7 @@ namespace fyp.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage Checkcnic(int cnic)
+        public HttpResponseMessage Checkcnic(double cnic)
         {
             var exist = db.patients.Where(p => p.cnic == cnic).FirstOrDefault();
             if (exist != null)
