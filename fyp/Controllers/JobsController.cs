@@ -84,7 +84,7 @@ namespace fyp.Controllers
                 jr.rating = avgrating;
                 db.juniorDoctors.AddOrUpdate(jr);
                 db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK,"successfuly calculated and assigned rating");
+                return Request.CreateResponse(HttpStatusCode.OK, "successfuly calculated and assigned rating");
             }
             catch (Exception ex)
             {
