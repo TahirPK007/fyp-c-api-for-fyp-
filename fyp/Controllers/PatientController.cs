@@ -12,7 +12,7 @@ namespace fyp.Controllers
 {
     public class PatientController : ApiController
     {
-        virtualClinicEntities25 db = new virtualClinicEntities25();
+        virtualClinicEntities26 db = new virtualClinicEntities26();
         [HttpPost]
         public HttpResponseMessage Addpat(patient pat)
         {

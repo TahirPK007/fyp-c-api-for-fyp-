@@ -73,6 +73,7 @@
     <Property Name="medicine_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="timings" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="seniorDoctor">
     <Key>
@@ -112,7 +113,7 @@
     <Property Name="status" Type="Int32" />
     <Property Name="rated" Type="Int32" />
   </EntityType>
-  <EntityContainer Name="virtualClinicEntities25" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities26" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
     <EntitySet Name="appointments" EntityType="Self.appointment" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />

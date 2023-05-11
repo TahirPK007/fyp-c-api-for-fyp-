@@ -19,5 +19,6 @@ namespace fyp.Models
         public string medicine_name { get; set; }
         public string duration { get; set; }
         public string timings { get; set; }
+        public string date { get; set; }
     }
 }
