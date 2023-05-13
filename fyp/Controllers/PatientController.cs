@@ -12,7 +12,8 @@ namespace fyp.Controllers
 {
     public class PatientController : ApiController
     {
-        virtualClinicEntities26 db = new virtualClinicEntities26();
+        virtualClinicEntities27 db = new virtualClinicEntities27();
+        //adding new patient details
         [HttpPost]
         public HttpResponseMessage Addpat(patient pat)
         {
@@ -39,20 +40,29 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
-        [HttpPost]
-        public HttpResponseMessage Checkcnic(double cnic)
+        //checking if the patient is still exist
+        [HttpGet]
+        public HttpResponseMessage Checkingcnic(string cnic)
         {
-            var exist = db.patients.Where(p => p.cnic == cnic).FirstOrDefault();
-            if (exist != null)
+            try
             {
-                return Request.CreateResponse(HttpStatusCode.OK, exist);
+                var data = db.patients.Where(p => p.cnic == cnic).FirstOrDefault();
+                if(data != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, "no record");
+                }
+                
             }
-            else
+            catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, "no record");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        //populating the visit table when the vitals of the current patient's get added
         [HttpPost]
         public HttpResponseMessage Visits(int patient_id, int status)
         {
@@ -73,8 +83,9 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        //updating the existing patients details
         [HttpPost]
-        public HttpResponseMessage Updatepatdetails(patient patt, int patient_id, int newcnic)
+        public HttpResponseMessage Updatepatdetails(patient patt, int patient_id, string newcnic)
         {
             try
             {

@@ -15,7 +15,7 @@ namespace fyp.Models
     public partial class patient
     {
         public int patient_id { get; set; }
-        public Nullable<long> cnic { get; set; }
+        public string cnic { get; set; }
         public string full_name { get; set; }
         public string relation { get; set; }
         public string relative_name { get; set; }

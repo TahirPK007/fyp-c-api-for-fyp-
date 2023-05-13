@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="virtualClinicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="virtualClinicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="acceptcase">
           <Key>
             <PropertyRef Name="acceptcase_id" />
@@ -28,6 +28,7 @@
           <Property Name="status" Type="int" />
           <Property Name="srdoc_id" Type="int" />
           <Property Name="visit_id" Type="int" />
+          <Property Name="shown" Type="int" />
         </EntityType>
         <EntityType Name="juniorDoctor">
           <Key>
@@ -60,7 +61,7 @@
             <PropertyRef Name="patient_id" />
           </Key>
           <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cnic" Type="bigint" />
+          <Property Name="cnic" Type="varchar" MaxLength="50" />
           <Property Name="full_name" Type="varchar" MaxLength="30" />
           <Property Name="relation" Type="varchar" MaxLength="50" />
           <Property Name="relative_name" Type="varchar" MaxLength="50" />
@@ -129,8 +130,7 @@
           <EntitySet Name="visits" EntityType="Self.visits" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vitals" EntityType="Self.vitals" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="virtualClinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -157,6 +157,7 @@
           <Property Name="status" Type="Int32" />
           <Property Name="srdoc_id" Type="Int32" />
           <Property Name="visit_id" Type="Int32" />
+          <Property Name="shown" Type="Int32" />
         </EntityType>
         <EntityType Name="juniorDoctor">
           <Key>
@@ -189,7 +190,7 @@
             <PropertyRef Name="patient_id" />
           </Key>
           <Property Name="patient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cnic" Type="Int64" />
+          <Property Name="cnic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="full_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="relation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="relative_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -247,7 +248,7 @@
           <Property Name="status" Type="Int32" />
           <Property Name="rated" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="virtualClinicEntities26" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="virtualClinicEntities27" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
           <EntitySet Name="appointments" EntityType="Self.appointment" />
           <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
@@ -263,7 +264,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities26">
+        <EntityContainerMapping StorageEntityContainer="virtualClinicModelStoreContainer" CdmEntityContainer="virtualClinicEntities27">
           <EntitySetMapping Name="acceptcases">
             <EntityTypeMapping TypeName="virtualClinicModel.acceptcase">
               <MappingFragment StoreEntitySet="acceptcase">
@@ -278,6 +279,7 @@
           <EntitySetMapping Name="appointments">
             <EntityTypeMapping TypeName="virtualClinicModel.appointment">
               <MappingFragment StoreEntitySet="appointments">
+                <ScalarProperty Name="shown" ColumnName="shown" />
                 <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
                 <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />

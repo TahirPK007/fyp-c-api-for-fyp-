@@ -23,6 +23,7 @@
     <Property Name="status" Type="int" />
     <Property Name="srdoc_id" Type="int" />
     <Property Name="visit_id" Type="int" />
+    <Property Name="shown" Type="int" />
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>
@@ -55,7 +56,7 @@
       <PropertyRef Name="patient_id" />
     </Key>
     <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cnic" Type="bigint" />
+    <Property Name="cnic" Type="varchar" MaxLength="50" />
     <Property Name="full_name" Type="varchar" MaxLength="30" />
     <Property Name="relation" Type="varchar" MaxLength="50" />
     <Property Name="relative_name" Type="varchar" MaxLength="50" />

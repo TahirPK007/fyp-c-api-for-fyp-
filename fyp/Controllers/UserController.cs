@@ -12,10 +12,10 @@ namespace fyp.Controllers
 
     public class UserController : ApiController
     {
-        virtualClinicEntities26 db = new virtualClinicEntities26();
+        virtualClinicEntities27 db = new virtualClinicEntities27();
 
         [HttpGet]
-        public HttpResponseMessage GetAllPrescriptions(double cnic)
+        public HttpResponseMessage GetAllPrescriptions(string cnic)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace fyp.Controllers
             }
         }
         [HttpGet]
-        public HttpResponseMessage Gettingdate(double cnic)
+        public HttpResponseMessage Gettingdate(string cnic)
         {
             try
             {

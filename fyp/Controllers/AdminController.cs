@@ -10,7 +10,7 @@ namespace fyp.Controllers
 {
     public class AdminController : ApiController
     {
-        virtualClinicEntities26 db = new virtualClinicEntities26();
+        virtualClinicEntities27 db = new virtualClinicEntities27();
         [HttpPost]
         public HttpResponseMessage Addnewnurse(nurse nur)
         {
