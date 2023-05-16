@@ -85,14 +85,14 @@ namespace fyp.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Gettingappointments()
+        public HttpResponseMessage Gettingappointments(int nurseid)
         {
             try
             {
-                var data = db.appointments.Where(a => a.shown == 0);
+                var data = db.appointments.Where(a => a.shown == 0 && a.nurseID==nurseid);
                 var appts = (from a in db.appointments
                              join pat in db.patients on a.patient_id equals pat.patient_id
-                             where a.shown == 0
+                             where a.shown == 0 && a.nurseID==nurseid
                              where pat.patient_id==a.patient_id
                              select new {a,pat}).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, appts);

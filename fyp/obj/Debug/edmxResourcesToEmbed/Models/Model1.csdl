@@ -24,6 +24,7 @@
     <Property Name="srdoc_id" Type="Int32" />
     <Property Name="visit_id" Type="Int32" />
     <Property Name="shown" Type="Int32" />
+    <Property Name="nurseID" Type="Int32" />
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>
@@ -98,6 +99,7 @@
     <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="AssignedDatetime" Type="DateTime" Precision="3" />
+    <Property Name="nurseID" Type="Int32" />
   </EntityType>
   <EntityType Name="vital">
     <Key>

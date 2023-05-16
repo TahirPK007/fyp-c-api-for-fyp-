@@ -21,5 +21,6 @@ namespace fyp.Models
         public string date { get; set; }
         public string time { get; set; }
         public Nullable<System.DateTime> AssignedDatetime { get; set; }
+        public Nullable<int> nurseID { get; set; }
     }
 }

@@ -15,6 +15,7 @@
     <EntitySetMapping Name="appointments">
       <EntityTypeMapping TypeName="virtualClinicModel.appointment">
         <MappingFragment StoreEntitySet="appointments">
+          <ScalarProperty Name="nurseID" ColumnName="nurseID" />
           <ScalarProperty Name="shown" ColumnName="shown" />
           <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
@@ -98,6 +99,7 @@
     <EntitySetMapping Name="visits">
       <EntityTypeMapping TypeName="virtualClinicModel.visit">
         <MappingFragment StoreEntitySet="visits">
+          <ScalarProperty Name="nurseID" ColumnName="nurseID" />
           <ScalarProperty Name="visit_id" ColumnName="visit_id" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
           <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />

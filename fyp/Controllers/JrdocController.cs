@@ -126,7 +126,7 @@ namespace fyp.Controllers
         }
         //adding data into the appointment table
         [HttpPost]
-        public HttpResponseMessage Appointment(int patid, int jrdocid, int visitid)
+        public HttpResponseMessage Appointment(int patid, int jrdocid, int visitid,int nurseid)
         {
             try
             {
@@ -134,10 +134,12 @@ namespace fyp.Controllers
                 var d = DateTime.Now;
                 apt.patient_id = patid;
                 apt.jrdoc_id = jrdocid;
+                apt.nurseID = nurseid;
                 apt.date = d.ToShortDateString();
                 apt.time = d.ToShortTimeString();
                 apt.status = 0;
                 apt.visit_id = visitid;
+                apt.status = 0;
                 db.appointments.Add(apt);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "new appointment added");

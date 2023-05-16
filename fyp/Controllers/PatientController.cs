@@ -64,7 +64,7 @@ namespace fyp.Controllers
         }
         //populating the visit table when the vitals of the current patient's get added
         [HttpPost]
-        public HttpResponseMessage Visits(int patient_id, int status)
+        public HttpResponseMessage Visits(int patient_id, int status,int nurseid)
         {
             try
             {
@@ -72,6 +72,7 @@ namespace fyp.Controllers
                 var d = DateTime.Now;
                 v.patient_id = patient_id;
                 v.status = status;
+                v.nurseID = nurseid;
                 v.date = d.ToShortDateString();
                 v.time = d.ToLongTimeString();
                 db.visits.Add(v);

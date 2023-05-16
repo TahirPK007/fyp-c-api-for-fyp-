@@ -24,5 +24,6 @@ namespace fyp.Models
         public Nullable<int> srdoc_id { get; set; }
         public Nullable<int> visit_id { get; set; }
         public Nullable<int> shown { get; set; }
+        public Nullable<int> nurseID { get; set; }
     }
 }
