@@ -134,12 +134,12 @@ namespace fyp.Controllers
                 var d = DateTime.Now;
                 apt.patient_id = patid;
                 apt.jrdoc_id = jrdocid;
-                apt.nurseID = nurseid;
                 apt.date = d.ToShortDateString();
                 apt.time = d.ToShortTimeString();
-                apt.status = 0;
                 apt.visit_id = visitid;
                 apt.status = 0;
+                apt.nurseID = nurseid;
+                apt.shown = 0;
                 db.appointments.Add(apt);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "new appointment added");

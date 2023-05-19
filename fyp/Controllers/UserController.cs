@@ -14,6 +14,25 @@ namespace fyp.Controllers
     {
         virtualClinicEntities27 db = new virtualClinicEntities27();
 
+
+        //its getting all the appointments of the patient who is entering his cnic
+        [HttpGet]
+        public HttpResponseMessage Gettingdate(string cnic)
+        {
+            try
+            {
+                var data = db.patients.Where(p => p.cnic == cnic).FirstOrDefault();
+                int patid = data.patient_id;
+                var details = db.appointments.Where(a => a.patient_id == patid).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, details);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        //its getting all the prescriptions related to current patient and his appointments
         [HttpGet]
         public HttpResponseMessage GetAllPrescriptions(string cnic)
         {
@@ -33,21 +52,7 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-        [HttpGet]
-        public HttpResponseMessage Gettingdate(string cnic)
-        {
-            try
-            {
-                var data = db.patients.Where(p => p.cnic == cnic).FirstOrDefault();
-                int patid = data.patient_id;
-                var details = db.appointments.Where(a => a.patient_id == patid).ToList();
-                return Request.CreateResponse(HttpStatusCode.OK, details);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
+
 
     }
 }
