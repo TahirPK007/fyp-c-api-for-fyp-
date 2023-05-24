@@ -52,7 +52,7 @@ namespace fyp.Controllers
                     vit.sugar = (request["sugar"]);
                     vit.temperature = (request["temperature"]);
                     vit.symptoms = (request["symptoms"].ToString());
-                    vit.image = "http://192.168.0.106/fyp/Content/Uploads/" + filename;
+                    vit.image = "http://10.0.2.2/fyp/Content/Uploads/" + filename;
                     vit.status = 0;
                     vit.rated = 0;
                     db.vitals.Add(vit);
