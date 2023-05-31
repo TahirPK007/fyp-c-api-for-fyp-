@@ -24,5 +24,6 @@ namespace fyp.Models
         public string image { get; set; }
         public Nullable<int> status { get; set; }
         public Nullable<int> rated { get; set; }
+        public string testimage { get; set; }
     }
 }

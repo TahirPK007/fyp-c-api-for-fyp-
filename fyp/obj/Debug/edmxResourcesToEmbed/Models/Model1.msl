@@ -60,6 +60,7 @@
     <EntitySetMapping Name="patients">
       <EntityTypeMapping TypeName="virtualClinicModel.patient">
         <MappingFragment StoreEntitySet="patient">
+          <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
           <ScalarProperty Name="cnic" ColumnName="cnic" />
           <ScalarProperty Name="full_name" ColumnName="full_name" />
@@ -113,6 +114,7 @@
     <EntitySetMapping Name="vitals">
       <EntityTypeMapping TypeName="virtualClinicModel.vital">
         <MappingFragment StoreEntitySet="vitals">
+          <ScalarProperty Name="testimage" ColumnName="testimage" />
           <ScalarProperty Name="vital_id" ColumnName="vital_id" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />
           <ScalarProperty Name="systolic" ColumnName="systolic" />
@@ -123,6 +125,15 @@
           <ScalarProperty Name="image" ColumnName="image" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="rated" ColumnName="rated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="commentsTests">
+      <EntityTypeMapping TypeName="virtualClinicModel.commentsTest">
+        <MappingFragment StoreEntitySet="commentsTest">
+          <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="testid" ColumnName="testid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

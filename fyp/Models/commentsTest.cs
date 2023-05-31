@@ -12,17 +12,10 @@ namespace fyp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class patient
+    public partial class commentsTest
     {
-        public int patient_id { get; set; }
-        public string cnic { get; set; }
-        public string full_name { get; set; }
-        public string relation { get; set; }
-        public string relative_name { get; set; }
-        public string dob { get; set; }
-        public string gender { get; set; }
-        public string date { get; set; }
-        public string time { get; set; }
-        public Nullable<int> jrdoc_id { get; set; }
+        public int testid { get; set; }
+        public string comments { get; set; }
+        public Nullable<int> appointment_id { get; set; }
     }
 }

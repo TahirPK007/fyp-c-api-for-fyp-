@@ -31,6 +31,14 @@
           <Property Name="shown" Type="int" />
           <Property Name="nurseID" Type="int" />
         </EntityType>
+        <EntityType Name="commentsTest">
+          <Key>
+            <PropertyRef Name="testid" />
+          </Key>
+          <Property Name="testid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="appointment_id" Type="int" />
+          <Property Name="comments" Type="varchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="juniorDoctor">
           <Key>
             <PropertyRef Name="jrdoc_id" />
@@ -70,6 +78,7 @@
           <Property Name="gender" Type="varchar" MaxLength="20" />
           <Property Name="date" Type="varchar" MaxLength="50" />
           <Property Name="time" Type="varchar" MaxLength="50" />
+          <Property Name="jrdoc_id" Type="int" />
         </EntityType>
         <EntityType Name="prescription">
           <Key>
@@ -118,12 +127,14 @@
           <Property Name="temperature" Type="varchar" MaxLength="50" />
           <Property Name="symptoms" Type="varchar" MaxLength="100" />
           <Property Name="image" Type="varchar(max)" />
+          <Property Name="testimage" Type="varchar(max)" />
           <Property Name="status" Type="int" />
           <Property Name="rated" Type="int" />
         </EntityType>
         <EntityContainer Name="virtualClinicModelStoreContainer">
           <EntitySet Name="acceptcase" EntityType="Self.acceptcase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="appointments" EntityType="Self.appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="commentsTest" EntityType="Self.commentsTest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="juniorDoctor" EntityType="Self.juniorDoctor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nurse" EntityType="Self.nurse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
@@ -201,6 +212,7 @@
           <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jrdoc_id" Type="Int32" />
         </EntityType>
         <EntityType Name="prescription">
           <Key>
@@ -251,6 +263,7 @@
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
           <Property Name="rated" Type="Int32" />
+          <Property Name="testimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="virtualClinicEntities27" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
@@ -262,7 +275,16 @@
           <EntitySet Name="seniorDoctors" EntityType="Self.seniorDoctor" />
           <EntitySet Name="visits" EntityType="Self.visit" />
           <EntitySet Name="vitals" EntityType="Self.vital" />
+          <EntitySet Name="commentsTests" EntityType="virtualClinicModel.commentsTest" />
         </EntityContainer>
+        <EntityType Name="commentsTest">
+          <Key>
+            <PropertyRef Name="testid" />
+          </Key>
+          <Property Name="testid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="appointment_id" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -328,6 +350,7 @@
           <EntitySetMapping Name="patients">
             <EntityTypeMapping TypeName="virtualClinicModel.patient">
               <MappingFragment StoreEntitySet="patient">
+                <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
                 <ScalarProperty Name="cnic" ColumnName="cnic" />
                 <ScalarProperty Name="full_name" ColumnName="full_name" />
@@ -381,6 +404,7 @@
           <EntitySetMapping Name="vitals">
             <EntityTypeMapping TypeName="virtualClinicModel.vital">
               <MappingFragment StoreEntitySet="vitals">
+                <ScalarProperty Name="testimage" ColumnName="testimage" />
                 <ScalarProperty Name="vital_id" ColumnName="vital_id" />
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
                 <ScalarProperty Name="systolic" ColumnName="systolic" />
@@ -391,6 +415,15 @@
                 <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="rated" ColumnName="rated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="commentsTests">
+            <EntityTypeMapping TypeName="virtualClinicModel.commentsTest">
+              <MappingFragment StoreEntitySet="commentsTest">
+                <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="testid" ColumnName="testid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

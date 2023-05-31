@@ -40,42 +40,27 @@ namespace fyp.Controllers
             {
                 HttpRequest request = HttpContext.Current.Request;
                 var image = request.Files["image"];
+                string filename = string.Empty;
                 if (image != null)
                 {
                     string extension = image.FileName.Split('.')[1];
-                    string filename = image.FileName + "." + extension;
+                    filename = image.FileName + "." + extension;
                     image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
-                    vital vit = new vital();
-                    vit.patient_id = int.Parse(request["patient_id"]);
-                    vit.systolic = (request["systolic"]);
-                    vit.diastolic = (request["diastolic"]);
-                    vit.sugar = (request["sugar"]);
-                    vit.temperature = (request["temperature"]);
-                    vit.symptoms = (request["symptoms"].ToString());
-                    vit.image = "http://10.0.2.2/fyp/Content/Uploads/" + filename;
-                    vit.status = 0;
-                    vit.rated = 0;
-                    db.vitals.Add(vit);
-                    db.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
                 }
-                else
-                {
-                    vital vit = new vital();
-                    vit.patient_id = int.Parse(request["patient_id"]);
-                    vit.systolic = (request["systolic"]);
-                    vit.diastolic = (request["diastolic"]);
-                    vit.sugar = (request["sugar"]);
-                    vit.temperature = (request["temperature"]);
-                    vit.symptoms = (request["symptoms"].ToString());
-                    vit.image = null;
-                    vit.status = 0;
-                    vit.rated = 0;
-                    db.vitals.Add(vit);
-                    db.SaveChanges();
+                vital vit = new vital();
+                vit.patient_id = int.Parse(request["patient_id"]);
+                vit.systolic = (request["systolic"]);
+                vit.diastolic = (request["diastolic"]);
+                vit.sugar = (request["sugar"]);
+                vit.temperature = (request["temperature"]);
+                vit.symptoms = (request["symptoms"].ToString());
+                vit.image =string.IsNullOrEmpty(filename)?null: "http://10.0.2.2/fyp/Content/Uploads/" + filename;
+                vit.status = 0;
+                vit.rated = 0;
+                db.vitals.Add(vit);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
 
-                    return Request.CreateResponse(HttpStatusCode.OK, "current patient's vital added");
-                }
 
             }
             catch (Exception ex)
@@ -89,12 +74,12 @@ namespace fyp.Controllers
         {
             try
             {
-                var data = db.appointments.Where(a => a.shown == 0 && a.nurseID==nurseid);
+                var data = db.appointments.Where(a => a.shown == 0 && a.nurseID == nurseid);
                 var appts = (from a in db.appointments
                              join pat in db.patients on a.patient_id equals pat.patient_id
-                             where a.shown == 0 && a.nurseID==nurseid
-                             where pat.patient_id==a.patient_id
-                             select new {a,pat}).ToList();
+                             where a.shown == 0 && a.nurseID == nurseid
+                             where pat.patient_id == a.patient_id
+                             select new { a, pat }).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, appts);
             }
             catch (Exception ex)
@@ -107,13 +92,15 @@ namespace fyp.Controllers
         {
             try
             {
-                var data = db.appointments.Where(a=>a.appointment_id==aptid).FirstOrDefault();
+                var data = db.appointments.Where(a => a.appointment_id == aptid).FirstOrDefault();
                 int apointmentid = data.appointment_id;
                 var details = (from x in db.appointments
                                join p in db.prescriptions on x.appointment_id equals p.appointment_id
+                               join t in db.commentsTests on x.appointment_id equals t.appointment_id
                                where x.appointment_id == apointmentid
                                where p.appointment_id == x.appointment_id
-                               select new { x, p }).ToList();
+                               where t.appointment_id == x.appointment_id
+                               select new { x, p, t }).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, details);
             }
             catch (Exception ex)

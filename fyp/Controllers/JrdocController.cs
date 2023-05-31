@@ -23,6 +23,7 @@ namespace fyp.Controllers
                 var email = db.juniorDoctors.Where(j => j.email == jr.email).FirstOrDefault();
                 if (email == null)
                 {
+                    jr.rating = 0;
                     db.juniorDoctors.Add(jr);
                     db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, "true");
@@ -126,7 +127,7 @@ namespace fyp.Controllers
         }
         //adding data into the appointment table
         [HttpPost]
-        public HttpResponseMessage Appointment(int patid, int jrdocid, int visitid,int nurseid)
+        public HttpResponseMessage Appointment(int patid, int jrdocid, int visitid, int nurseid)
         {
             try
             {
@@ -196,6 +197,55 @@ namespace fyp.Controllers
                 db.vitals.AddOrUpdate(data);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "Successfully Updated");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+        [HttpPost]
+        public HttpResponseMessage CommentsTest(int aptid, string comments)
+        {
+            try
+            {
+                commentsTest cts = new commentsTest();
+                cts.appointment_id = aptid;
+                cts.comments = comments;
+                db.commentsTests.Add(cts);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "Successfully added");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+        [HttpPost]
+        public HttpResponseMessage AddFollowUp(int patid, int jrdocid)
+        {
+            try
+            {
+                var data = db.patients.Where(p => p.patient_id == patid).FirstOrDefault();
+                data.jrdoc_id = jrdocid;
+                db.patients.AddOrUpdate(data);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "FollowedUp Success");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+        [HttpPost]
+        public HttpResponseMessage RemoveFollowUp(int patid)
+        {
+            try
+            {
+                var data = db.patients.Where(p => p.patient_id == patid).FirstOrDefault();
+                data.jrdoc_id = null;
+                db.patients.AddOrUpdate(data);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "Successfully removed followed up patient");
             }
             catch (Exception ex)
             {

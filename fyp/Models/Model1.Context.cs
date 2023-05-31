@@ -34,5 +34,6 @@ namespace fyp.Models
         public virtual DbSet<seniorDoctor> seniorDoctors { get; set; }
         public virtual DbSet<visit> visits { get; set; }
         public virtual DbSet<vital> vitals { get; set; }
+        public virtual DbSet<commentsTest> commentsTests { get; set; }
     }
 }

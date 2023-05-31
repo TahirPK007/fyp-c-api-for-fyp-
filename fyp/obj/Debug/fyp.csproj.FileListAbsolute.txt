@@ -175,8 +175,6 @@ C:\Users\vscode\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.csproj.CoreCompileI
 C:\Users\vscode\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.csproj.CopyComplete
 C:\Users\vscode\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.dll
 C:\Users\vscode\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.pdb
-C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.csproj.AssemblyReference.cache
-C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.csproj.CoreCompileInputs.cache
 C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\bin\fyp.dll.config
 C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\bin\fyp.dll
 C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\bin\fyp.pdb
@@ -261,6 +259,8 @@ C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\bin\System.Web.WebPages.Deployme
 C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\bin\System.Web.WebPages.Razor.xml
 C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\bin\Antlr3.Runtime.pdb
 C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.csproj.AssemblyReference.cache
+C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.csproj.CoreCompileInputs.cache
 C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.csproj.CopyComplete
 C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.dll
 C:\Users\TahirPK\Desktop\fyp-c-api-for-fyp-\fyp\obj\Debug\fyp.pdb
