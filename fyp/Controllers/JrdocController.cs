@@ -45,16 +45,23 @@ namespace fyp.Controllers
             try
             {
                 var visits1 = db.visits.Where(v => v.status == 1 && v.jrdoc_id == id).FirstOrDefault();
-                var jrdocid = visits1.jrdoc_id;
-                var patid = visits1.patient_id;
-                var record = (from x in db.visits
-                              join p in db.patients on x.patient_id equals p.patient_id
-                              join v in db.vitals on p.patient_id equals v.patient_id
-                              where x.status == 1 && x.jrdoc_id == id
-                              where p.patient_id == patid
-                              where v.patient_id == patid && v.status == 0
-                              select new { p, v, x }).ToList();
-                return Request.CreateResponse(HttpStatusCode.OK, record);
+                if (visits1 != null)
+                {
+                    var jrdocid = visits1.jrdoc_id;
+                    var patid = visits1.patient_id;
+                    var record = (from x in db.visits
+                                  join p in db.patients on x.patient_id equals p.patient_id
+                                  join v in db.vitals on p.patient_id equals v.patient_id
+                                  where x.status == 1 && x.jrdoc_id == id
+                                  where p.patient_id == patid
+                                  where v.patient_id == patid && v.status == 0
+                                  select new { p, v, x }).ToList();
+                    return Request.CreateResponse(HttpStatusCode.OK, record);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "no new cases");
+                }
 
             }
             catch (Exception ex)

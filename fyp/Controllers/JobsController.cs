@@ -62,28 +62,13 @@ namespace fyp.Controllers
                 var doctor = availableDoctors.FirstOrDefault(d => d.jrdoc_id != visit.jrdoc_id);
                 if (doctor != null)
                 {
+                    //checkin if the patient has follow up visit with the junior doctor
                     var pat = db.patients.Where(p => p.patient_id == visit.patient_id).FirstOrDefault();
                     if (pat != null && pat.jrdoc_id != null)
                     {
                         doctor = availableDoctors.FirstOrDefault(d => d.jrdoc_id == pat.jrdoc_id);
                     }
                 }
-                //var doctor = availableDoctors.FirstOrDefault();
-                //if (visit.jrdoc_id != null)
-                //{
-                //    //checkin if the patient has follow up visit with the junior doctor
-                //    var pat = db.patients.Where(p => p.patient_id == visit.patient_id).FirstOrDefault();
-                //    if (pat != null && pat.jrdoc_id != null)
-                //    {
-                //        doctor = availableDoctors.FirstOrDefault(d => d.jrdoc_id == pat.jrdoc_id);
-
-                //    }
-                //    else
-                //    {
-                //        doctor = availableDoctors.FirstOrDefault(d => d.jrdoc_id != visit.jrdoc_id);
-                //    }
-                   
-                //}
 
                 if (doctor != null)
                 {
