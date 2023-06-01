@@ -40,12 +40,20 @@ namespace fyp.Controllers
             {
                 HttpRequest request = HttpContext.Current.Request;
                 var image = request.Files["image"];
+                var testimage = request.Files["testimage"];
                 string filename = string.Empty;
+                string filename1 = string.Empty;
                 if (image != null)
                 {
                     string extension = image.FileName.Split('.')[1];
                     filename = image.FileName + "." + extension;
                     image.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename));
+                }
+                if (testimage != null)
+                {
+                    string extension = testimage.FileName.Split('.')[1];
+                    filename1 = testimage.FileName + "." + extension;
+                    testimage.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Uploads/" + filename1));
                 }
                 vital vit = new vital();
                 vit.patient_id = int.Parse(request["patient_id"]);
@@ -54,7 +62,8 @@ namespace fyp.Controllers
                 vit.sugar = (request["sugar"]);
                 vit.temperature = (request["temperature"]);
                 vit.symptoms = (request["symptoms"].ToString());
-                vit.image =string.IsNullOrEmpty(filename)?null: "http://10.0.2.2/fyp/Content/Uploads/" + filename;
+                vit.image = string.IsNullOrEmpty(filename) ? null : "http://10.0.2.2/fyp/Content/Uploads/" + filename;
+                vit.testimage = string.IsNullOrEmpty(filename1) ? null : "http://10.0.2.2/fyp/Content/Uploads/" + filename1;
                 vit.status = 0;
                 vit.rated = 0;
                 db.vitals.Add(vit);
