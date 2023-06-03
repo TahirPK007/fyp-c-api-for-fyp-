@@ -125,6 +125,7 @@
     <Property Name="testimage" Type="varchar(max)" />
     <Property Name="status" Type="int" />
     <Property Name="rated" Type="int" />
+    <Property Name="appointment_id" Type="int" />
   </EntityType>
   <EntityContainer Name="virtualClinicModelStoreContainer">
     <EntitySet Name="acceptcase" EntityType="Self.acceptcase" Schema="dbo" store:Type="Tables" />

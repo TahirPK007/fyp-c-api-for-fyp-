@@ -165,7 +165,8 @@ namespace fyp.Controllers
         {
             try
             {
-                var data = db.appointments.Where(a => a.patient_id == patid && a.status == 0).FirstOrDefault();
+                var data = db.appointments.Where(a => a.patient_id == patid && a.status == 0)
+                .OrderByDescending(a => a.appointment_id).FirstOrDefault();
                 int aptid = data.appointment_id;
                 return Request.CreateResponse(HttpStatusCode.OK, aptid);
             }
@@ -173,8 +174,6 @@ namespace fyp.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
-
-
         }
         [HttpPost]
         public HttpResponseMessage Addingprescription([FromBody] List<prescription> prescriptions)
@@ -195,12 +194,13 @@ namespace fyp.Controllers
         }
         //updating vitals status to prevent from re-fetching the same patient's vitals
         [HttpPost]
-        public HttpResponseMessage Updatingvitalstatus(int vitalid)
+        public HttpResponseMessage Updatingvitalstatus(int vitalid,int aptid)
         {
             try
             {
                 var data = db.vitals.Where(v => v.vital_id == vitalid).FirstOrDefault();
                 data.status = 1;
+                data.appointment_id = aptid;
                 db.vitals.AddOrUpdate(data);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "Successfully Updated");
@@ -210,6 +210,7 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        //jr doc suggesting comments and testts
         [HttpPost]
         public HttpResponseMessage CommentsTest(int aptid, string comments)
         {
@@ -227,6 +228,7 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        //adding patient to follow up
         [HttpPost]
         public HttpResponseMessage AddFollowUp(int patid, int jrdocid)
         {
@@ -243,6 +245,7 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        //jrdoc removing patient from follow up
         [HttpPost]
         public HttpResponseMessage RemoveFollowUp(int patid)
         {

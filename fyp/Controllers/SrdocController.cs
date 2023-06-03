@@ -117,15 +117,14 @@ namespace fyp.Controllers
                                join jr in db.juniorDoctors on x.jrdoc_id equals jr.jrdoc_id
                                join ac in db.acceptcases on x.visit_id equals ac.visit_id
                                join apt in db.appointments on x.visit_id equals apt.visit_id
-
                                where x.visit_id == visitid
                                where p.patient_id == patid
-                               where v.status == 1 && v.rated == 0 && v.patient_id == patid
+                               where v.status == 1 && v.rated == 0 && v.patient_id == patid && v.appointment_id==aptid
                                where jr.jrdoc_id == jrdocid
                                where ac.visit_id == visitid
                                where apt.visit_id == visitid
 
-                               select new { x, p, v, jr, ac, apt }).ToList();
+                               select new { x, p, v, jr, ac, apt }).FirstOrDefault();
                 return Request.CreateResponse(HttpStatusCode.OK, details);
 
             }

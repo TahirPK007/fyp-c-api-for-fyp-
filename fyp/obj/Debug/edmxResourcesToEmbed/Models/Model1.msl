@@ -114,6 +114,7 @@
     <EntitySetMapping Name="vitals">
       <EntityTypeMapping TypeName="virtualClinicModel.vital">
         <MappingFragment StoreEntitySet="vitals">
+          <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
           <ScalarProperty Name="testimage" ColumnName="testimage" />
           <ScalarProperty Name="vital_id" ColumnName="vital_id" />
           <ScalarProperty Name="patient_id" ColumnName="patient_id" />

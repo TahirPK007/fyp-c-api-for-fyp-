@@ -130,6 +130,7 @@
           <Property Name="testimage" Type="varchar(max)" />
           <Property Name="status" Type="int" />
           <Property Name="rated" Type="int" />
+          <Property Name="appointment_id" Type="int" />
         </EntityType>
         <EntityContainer Name="virtualClinicModelStoreContainer">
           <EntitySet Name="acceptcase" EntityType="Self.acceptcase" Schema="dbo" store:Type="Tables" />
@@ -264,6 +265,7 @@
           <Property Name="status" Type="Int32" />
           <Property Name="rated" Type="Int32" />
           <Property Name="testimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="appointment_id" Type="Int32" />
         </EntityType>
         <EntityContainer Name="virtualClinicEntities27" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
@@ -404,6 +406,7 @@
           <EntitySetMapping Name="vitals">
             <EntityTypeMapping TypeName="virtualClinicModel.vital">
               <MappingFragment StoreEntitySet="vitals">
+                <ScalarProperty Name="appointment_id" ColumnName="appointment_id" />
                 <ScalarProperty Name="testimage" ColumnName="testimage" />
                 <ScalarProperty Name="vital_id" ColumnName="vital_id" />
                 <ScalarProperty Name="patient_id" ColumnName="patient_id" />
