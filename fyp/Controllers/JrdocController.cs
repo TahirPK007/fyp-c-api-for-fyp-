@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Antlr.Runtime.Tree;
 using fyp.Models;
 
 namespace fyp.Controllers
@@ -24,6 +25,7 @@ namespace fyp.Controllers
                 if (email == null)
                 {
                     jr.rating = 0;
+                    jr.money = 0;
                     db.juniorDoctors.Add(jr);
                     db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, "true");
@@ -78,13 +80,18 @@ namespace fyp.Controllers
                 if (user1 != null)
                 {
                     user1.status = 1;
+                    if (user1.lastloggedindate == null || user1.lastloggedindate.Value.Date != DateTime.Today)
+                    {
+                        user1.dailyassignedpatientcount = 0;
+                    }
+                    user1.lastloggedindate = DateTime.Now;
                     db.juniorDoctors.AddOrUpdate(user1);
                     db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, user1);
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, "user doesnt exist");
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "User doesn't exist");
                 }
             }
             catch (Exception ex)
@@ -264,7 +271,24 @@ namespace fyp.Controllers
         }
 
 
-
-
+        //adding money to jrdoc on the amount of handled cases
+        [HttpPost]
+        public HttpResponseMessage AddingMoney(int jrdocid,int money)
+        {
+            try
+            {
+                var data = db.juniorDoctors.Where(d => d.jrdoc_id == jrdocid).FirstOrDefault();
+                var oldmoney =data.money;
+                var newmoney = oldmoney + money;
+                data.money = newmoney;
+                db.juniorDoctors.AddOrUpdate(data);
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, "successfully updated money");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
     }
 }

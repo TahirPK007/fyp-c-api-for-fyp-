@@ -49,6 +49,10 @@
     <Property Name="role" Type="varchar" MaxLength="50" />
     <Property Name="status" Type="int" />
     <Property Name="rating" Type="float" />
+    <Property Name="money" Type="int" />
+    <Property Name="assignedpatientcount" Type="int" />
+    <Property Name="dailyassignedpatientcount" Type="int" />
+    <Property Name="lastloggedindate" Type="datetime" />
   </EntityType>
   <EntityType Name="nurse">
     <Key>

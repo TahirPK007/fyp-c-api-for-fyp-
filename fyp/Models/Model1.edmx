@@ -54,6 +54,10 @@
           <Property Name="role" Type="varchar" MaxLength="50" />
           <Property Name="status" Type="int" />
           <Property Name="rating" Type="float" />
+          <Property Name="money" Type="int" />
+          <Property Name="assignedpatientcount" Type="int" />
+          <Property Name="dailyassignedpatientcount" Type="int" />
+          <Property Name="lastloggedindate" Type="datetime" />
         </EntityType>
         <EntityType Name="nurse">
           <Key>
@@ -189,6 +193,10 @@
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" />
           <Property Name="rating" Type="Double" />
+          <Property Name="money" Type="Int32" />
+          <Property Name="assignedpatientcount" Type="Int32" />
+          <Property Name="dailyassignedpatientcount" Type="Int32" />
+          <Property Name="lastloggedindate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="nurse">
           <Key>
@@ -324,6 +332,10 @@
           <EntitySetMapping Name="juniorDoctors">
             <EntityTypeMapping TypeName="virtualClinicModel.juniorDoctor">
               <MappingFragment StoreEntitySet="juniorDoctor">
+                <ScalarProperty Name="lastloggedindate" ColumnName="lastloggedindate" />
+                <ScalarProperty Name="dailyassignedpatientcount" ColumnName="dailyassignedpatientcount" />
+                <ScalarProperty Name="assignedpatientcount" ColumnName="assignedpatientcount" />
+                <ScalarProperty Name="money" ColumnName="money" />
                 <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
                 <ScalarProperty Name="full_name" ColumnName="full_name" />
                 <ScalarProperty Name="father_name" ColumnName="father_name" />

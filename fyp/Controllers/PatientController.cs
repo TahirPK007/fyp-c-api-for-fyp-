@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
 using fyp.Models;
 
@@ -109,6 +110,30 @@ namespace fyp.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
+        //this function will get all the patient history
+        [HttpPost]
+        public HttpResponseMessage AllHistory(int patid)
+        {
+            try
+            {
+                var data = (from p in db.patients
+                            join v in db.vitals on p.patient_id equals v.patient_id
+                            join vv in db.visits on v.vital_id equals vv.visit_id
+                            join a in db.appointments on vv.visit_id equals a.visit_id
+                            join pres in db.prescriptions on a.appointment_id equals pres.appointment_id
+                            where p.patient_id == patid
+                            where v.patient_id == patid
+                            where vv.patient_id== patid
+                            where a.appointment_id==patid
+                            where pres.appointment_id== a.appointment_id
+                            select new {p,v,vv,a,pres}
+                            ).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, "Details updated successfully");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
     }
 }

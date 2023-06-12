@@ -25,5 +25,9 @@ namespace fyp.Models
         public string role { get; set; }
         public Nullable<int> status { get; set; }
         public Nullable<double> rating { get; set; }
+        public Nullable<int> money { get; set; }
+        public Nullable<int> assignedpatientcount { get; set; }
+        public Nullable<int> dailyassignedpatientcount { get; set; }
+        public Nullable<System.DateTime> lastloggedindate { get; set; }
     }
 }

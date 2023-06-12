@@ -32,6 +32,10 @@
     <EntitySetMapping Name="juniorDoctors">
       <EntityTypeMapping TypeName="virtualClinicModel.juniorDoctor">
         <MappingFragment StoreEntitySet="juniorDoctor">
+          <ScalarProperty Name="lastloggedindate" ColumnName="lastloggedindate" />
+          <ScalarProperty Name="dailyassignedpatientcount" ColumnName="dailyassignedpatientcount" />
+          <ScalarProperty Name="assignedpatientcount" ColumnName="assignedpatientcount" />
+          <ScalarProperty Name="money" ColumnName="money" />
           <ScalarProperty Name="jrdoc_id" ColumnName="jrdoc_id" />
           <ScalarProperty Name="full_name" ColumnName="full_name" />
           <ScalarProperty Name="father_name" ColumnName="father_name" />
