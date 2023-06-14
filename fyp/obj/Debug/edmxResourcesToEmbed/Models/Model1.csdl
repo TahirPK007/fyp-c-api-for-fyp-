@@ -10,6 +10,13 @@
     <Property Name="time" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="visit_id" Type="Int32" />
   </EntityType>
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="adminid" />
+    </Key>
+    <Property Name="adminid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="threshold" Type="Int32" />
+  </EntityType>
   <EntityType Name="appointment">
     <Key>
       <PropertyRef Name="appointment_id" />
@@ -25,6 +32,14 @@
     <Property Name="visit_id" Type="Int32" />
     <Property Name="shown" Type="Int32" />
     <Property Name="nurseID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="commentsTest">
+    <Key>
+      <PropertyRef Name="testid" />
+    </Key>
+    <Property Name="testid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="appointment_id" Type="Int32" />
+    <Property Name="comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="juniorDoctor">
     <Key>
@@ -45,6 +60,7 @@
     <Property Name="assignedpatientcount" Type="Int32" />
     <Property Name="dailyassignedpatientcount" Type="Int32" />
     <Property Name="lastloggedindate" Type="DateTime" Precision="3" />
+    <Property Name="count" Type="Int32" />
   </EntityType>
   <EntityType Name="nurse">
     <Key>
@@ -118,14 +134,16 @@
     <Property Name="temperature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="symptoms" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="testimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
     <Property Name="rated" Type="Int32" />
-    <Property Name="testimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="appointment_id" Type="Int32" />
   </EntityType>
-  <EntityContainer Name="virtualClinicEntities27" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="virtualClinicEntities28" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="acceptcases" EntityType="Self.acceptcase" />
+    <EntitySet Name="admins" EntityType="Self.admin" />
     <EntitySet Name="appointments" EntityType="Self.appointment" />
+    <EntitySet Name="commentsTests" EntityType="Self.commentsTest" />
     <EntitySet Name="juniorDoctors" EntityType="Self.juniorDoctor" />
     <EntitySet Name="nurses" EntityType="Self.nurse" />
     <EntitySet Name="patients" EntityType="Self.patient" />
@@ -133,14 +151,5 @@
     <EntitySet Name="seniorDoctors" EntityType="Self.seniorDoctor" />
     <EntitySet Name="visits" EntityType="Self.visit" />
     <EntitySet Name="vitals" EntityType="Self.vital" />
-    <EntitySet Name="commentsTests" EntityType="virtualClinicModel.commentsTest" />
   </EntityContainer>
-  <EntityType Name="commentsTest">
-    <Key>
-      <PropertyRef Name="testid" />
-    </Key>
-    <Property Name="testid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="appointment_id" Type="Int32" />
-  </EntityType>
 </Schema>

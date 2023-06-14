@@ -22,9 +22,9 @@ namespace fyp.Models
         public string temperature { get; set; }
         public string symptoms { get; set; }
         public string image { get; set; }
+        public string testimage { get; set; }
         public Nullable<int> status { get; set; }
         public Nullable<int> rated { get; set; }
-        public string testimage { get; set; }
         public Nullable<int> appointment_id { get; set; }
     }
 }

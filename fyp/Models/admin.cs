@@ -12,10 +12,9 @@ namespace fyp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class commentsTest
+    public partial class admin
     {
-        public int testid { get; set; }
-        public Nullable<int> appointment_id { get; set; }
-        public string comments { get; set; }
+        public int adminid { get; set; }
+        public Nullable<int> threshold { get; set; }
     }
 }

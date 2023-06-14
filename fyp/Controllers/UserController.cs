@@ -12,7 +12,7 @@ namespace fyp.Controllers
 
     public class UserController : ApiController
     {
-        virtualClinicEntities27 db = new virtualClinicEntities27();
+        virtualClinicEntities28 db = new virtualClinicEntities28();
 
 
         //its getting all the appointments of the patient who is entering his cnic

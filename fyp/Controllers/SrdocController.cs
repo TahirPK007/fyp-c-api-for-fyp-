@@ -12,7 +12,7 @@ namespace fyp.Controllers
 {
     public class SrdocController : ApiController
     {
-        virtualClinicEntities27 db = new virtualClinicEntities27();
+        virtualClinicEntities28 db = new virtualClinicEntities28();
 
         [HttpGet]
         public HttpResponseMessage AssignAppointmentsToSrDoctor()
@@ -115,16 +115,13 @@ namespace fyp.Controllers
                                join p in db.patients on x.patient_id equals p.patient_id
                                join v in db.vitals on p.patient_id equals v.patient_id
                                join jr in db.juniorDoctors on x.jrdoc_id equals jr.jrdoc_id
-                               join ac in db.acceptcases on x.visit_id equals ac.visit_id
                                join apt in db.appointments on x.visit_id equals apt.visit_id
                                where x.visit_id == visitid
                                where p.patient_id == patid
                                where v.status == 1 && v.rated == 0 && v.patient_id == patid && v.appointment_id==aptid
                                where jr.jrdoc_id == jrdocid
-                               where ac.visit_id == visitid
                                where apt.visit_id == visitid
-
-                               select new { x, p, v, jr, ac, apt }).FirstOrDefault();
+                               select new { x, p, v, jr, apt }).FirstOrDefault();
                 return Request.CreateResponse(HttpStatusCode.OK, details);
 
             }

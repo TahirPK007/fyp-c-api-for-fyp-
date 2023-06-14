@@ -29,5 +29,6 @@ namespace fyp.Models
         public Nullable<int> assignedpatientcount { get; set; }
         public Nullable<int> dailyassignedpatientcount { get; set; }
         public Nullable<System.DateTime> lastloggedindate { get; set; }
+        public Nullable<int> count { get; set; }
     }
 }

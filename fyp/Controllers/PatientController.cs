@@ -13,7 +13,7 @@ namespace fyp.Controllers
 {
     public class PatientController : ApiController
     {
-        virtualClinicEntities27 db = new virtualClinicEntities27();
+        virtualClinicEntities28 db = new virtualClinicEntities28();
         //adding new patient details
         [HttpPost]
         public HttpResponseMessage Addpat(patient pat)
@@ -111,24 +111,21 @@ namespace fyp.Controllers
             }
         }
         //this function will get all the patient history
-        [HttpPost]
+        [HttpGet]
         public HttpResponseMessage AllHistory(int patid)
         {
             try
             {
-                var data = (from p in db.patients
-                            join v in db.vitals on p.patient_id equals v.patient_id
-                            join vv in db.visits on v.vital_id equals vv.visit_id
-                            join a in db.appointments on vv.visit_id equals a.visit_id
-                            join pres in db.prescriptions on a.appointment_id equals pres.appointment_id
-                            where p.patient_id == patid
-                            where v.patient_id == patid
-                            where vv.patient_id== patid
-                            where a.appointment_id==patid
-                            where pres.appointment_id== a.appointment_id
-                            select new {p,v,vv,a,pres}
-                            ).ToList();
-                return Request.CreateResponse(HttpStatusCode.OK, "Details updated successfully");
+                var details = (from x in db.appointments
+                               join p in db.prescriptions on x.appointment_id equals p.appointment_id
+                               join cmnts in db.commentsTests on x.appointment_id equals cmnts.appointment_id
+                               join v in db.vitals on x.appointment_id equals v.appointment_id
+                               where x.patient_id == patid
+                               where p.appointment_id == x.appointment_id
+                               where cmnts.appointment_id==x.appointment_id
+                               where v.appointment_id == x.appointment_id
+                               select new { x, p,cmnts,v }).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, details);
             }
             catch (Exception ex)
             {

@@ -12,7 +12,7 @@ namespace fyp.Controllers
 {
     public class JrdocController : ApiController
     {
-        virtualClinicEntities27 db = new virtualClinicEntities27();
+        virtualClinicEntities28 db = new virtualClinicEntities28();
 
         public object SqlMethods { get; private set; }
 
@@ -26,6 +26,7 @@ namespace fyp.Controllers
                 {
                     jr.rating = 0;
                     jr.money = 0;
+                    jr.count = 0;
                     db.juniorDoctors.Add(jr);
                     db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, "true");
@@ -121,15 +122,8 @@ namespace fyp.Controllers
         {
             try
             {
-                acceptcase acp = new acceptcase();
                 var visittoupdate = db.visits.Where(v => v.status == 1 && v.jrdoc_id == jrdocid).FirstOrDefault();
-                TimeSpan acceptedtime = DateTime.Now.Subtract(visittoupdate.AssignedDatetime.Value);
-                acp.patient_id = patid;
-                acp.jrdoc_id = jrdocid;
-                acp.visit_id = visitid;
-                acp.time = $"{acceptedtime.Hours} hour {acceptedtime.Minutes} minute {acceptedtime.Seconds} second";
                 visittoupdate.status = 2;
-                db.acceptcases.Add(acp);
                 db.visits.AddOrUpdate(visittoupdate);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "data added in accept table");

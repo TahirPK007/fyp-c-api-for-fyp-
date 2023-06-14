@@ -10,6 +10,13 @@
     <Property Name="time" Type="varchar" MaxLength="200" />
     <Property Name="visit_id" Type="int" />
   </EntityType>
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="adminid" />
+    </Key>
+    <Property Name="adminid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="threshold" Type="int" />
+  </EntityType>
   <EntityType Name="appointments">
     <Key>
       <PropertyRef Name="appointment_id" />
@@ -53,6 +60,7 @@
     <Property Name="assignedpatientcount" Type="int" />
     <Property Name="dailyassignedpatientcount" Type="int" />
     <Property Name="lastloggedindate" Type="datetime" />
+    <Property Name="count" Type="int" />
   </EntityType>
   <EntityType Name="nurse">
     <Key>
@@ -133,6 +141,7 @@
   </EntityType>
   <EntityContainer Name="virtualClinicModelStoreContainer">
     <EntitySet Name="acceptcase" EntityType="Self.acceptcase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="appointments" EntityType="Self.appointments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="commentsTest" EntityType="Self.commentsTest" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="juniorDoctor" EntityType="Self.juniorDoctor" Schema="dbo" store:Type="Tables" />
